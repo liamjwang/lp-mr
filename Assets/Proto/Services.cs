@@ -25,11 +25,12 @@ namespace Proto.Services {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5zZXJ2aWNlcy5wcm90bxoObWVzc2FnZXMucHJvdG8aG2dvb2dsZS9wcm90",
-            "b2J1Zi9lbXB0eS5wcm90bzI6CgtNZXNoU2VydmljZRIrCghTZW5kTWVzaBIF",
-            "Lk1lc2gaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiADI8CgtQb3NlU2Vydmlj",
-            "ZRItCgpVcGRhdGVQb3NlEgUuUG9zZRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0",
-            "eSIAMjoKDEhlbGxvU2VydmljZRIqCghTYXlIZWxsbxINLkhlbGxvTWVzc2Fn",
-            "ZRoNLkhlbGxvTWVzc2FnZSIAQhGqAg5Qcm90by5TZXJ2aWNlc2IGcHJvdG8z"));
+            "b2J1Zi9lbXB0eS5wcm90bzJFChFOZWVkbGVQb3NlU2VydmljZRIwCgZVcGRh",
+            "dGUSDC5Qb3NlU3RhbXBlZBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIAMkcK",
+            "EkxpdmVVU0ltYWdlU2VydmljZRIxCgZVcGRhdGUSDS5JbWFnZVN0YW1wZWQa",
+            "Fi5nb29nbGUucHJvdG9idWYuRW1wdHkiADJBCg1VU01lc2hTZXJ2aWNlEjAK",
+            "BlVwZGF0ZRIMLk1lc2hTdGFtcGVkGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5",
+            "IgBCEaoCDlByb3RvLlNlcnZpY2VzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.Messages.MessagesReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

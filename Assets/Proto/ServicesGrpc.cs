@@ -8,22 +8,18 @@
 using grpc = global::Grpc.Core;
 
 namespace Proto.Services {
-  /// <summary>
-  ///*
-  /// 
-  /// </summary>
-  public static partial class MeshService
+  public static partial class NeedlePoseService
   {
-    static readonly string __ServiceName = "MeshService";
+    static readonly string __ServiceName = "NeedlePoseService";
 
-    static readonly grpc::Marshaller<global::Proto.Messages.Mesh> __Marshaller_Mesh = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.Mesh.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Proto.Messages.PoseStamped> __Marshaller_PoseStamped = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.PoseStamped.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::Proto.Messages.Mesh, global::Google.Protobuf.WellKnownTypes.Empty> __Method_SendMesh = new grpc::Method<global::Proto.Messages.Mesh, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly grpc::Method<global::Proto.Messages.PoseStamped, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Update = new grpc::Method<global::Proto.Messages.PoseStamped, global::Google.Protobuf.WellKnownTypes.Empty>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "SendMesh",
-        __Marshaller_Mesh,
+        "Update",
+        __Marshaller_PoseStamped,
         __Marshaller_google_protobuf_Empty);
 
     /// <summary>Service descriptor</summary>
@@ -32,93 +28,93 @@ namespace Proto.Services {
       get { return global::Proto.Services.ServicesReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of MeshService</summary>
-    [grpc::BindServiceMethod(typeof(MeshService), "BindService")]
-    public abstract partial class MeshServiceBase
+    /// <summary>Base class for server-side implementations of NeedlePoseService</summary>
+    [grpc::BindServiceMethod(typeof(NeedlePoseService), "BindService")]
+    public abstract partial class NeedlePoseServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> SendMesh(global::Proto.Messages.Mesh request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Update(global::Proto.Messages.PoseStamped request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
     }
 
-    /// <summary>Client for MeshService</summary>
-    public partial class MeshServiceClient : grpc::ClientBase<MeshServiceClient>
+    /// <summary>Client for NeedlePoseService</summary>
+    public partial class NeedlePoseServiceClient : grpc::ClientBase<NeedlePoseServiceClient>
     {
-      /// <summary>Creates a new client for MeshService</summary>
+      /// <summary>Creates a new client for NeedlePoseService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
-      public MeshServiceClient(grpc::ChannelBase channel) : base(channel)
+      public NeedlePoseServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for MeshService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for NeedlePoseService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public MeshServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public NeedlePoseServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected MeshServiceClient() : base()
+      protected NeedlePoseServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
-      protected MeshServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected NeedlePoseServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty SendMesh(global::Proto.Messages.Mesh request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.PoseStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SendMesh(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Update(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty SendMesh(global::Proto.Messages.Mesh request, grpc::CallOptions options)
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.PoseStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_SendMesh, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_Update, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> SendMeshAsync(global::Proto.Messages.Mesh request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.PoseStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SendMeshAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return UpdateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> SendMeshAsync(global::Proto.Messages.Mesh request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.PoseStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_SendMesh, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_Update, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override MeshServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override NeedlePoseServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new MeshServiceClient(configuration);
+        return new NeedlePoseServiceClient(configuration);
       }
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(MeshServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(NeedlePoseServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SendMesh, serviceImpl.SendMesh).Build();
+          .AddMethod(__Method_Update, serviceImpl.Update).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
     /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, MeshServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, NeedlePoseServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_SendMesh, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.Mesh, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.SendMesh));
+      serviceBinder.AddMethod(__Method_Update, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.PoseStamped, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Update));
     }
 
   }
-  public static partial class PoseService
+  public static partial class LiveUSImageService
   {
-    static readonly string __ServiceName = "PoseService";
+    static readonly string __ServiceName = "LiveUSImageService";
 
-    static readonly grpc::Marshaller<global::Proto.Messages.Pose> __Marshaller_Pose = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.Pose.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Proto.Messages.ImageStamped> __Marshaller_ImageStamped = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.ImageStamped.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::Proto.Messages.Pose, global::Google.Protobuf.WellKnownTypes.Empty> __Method_UpdatePose = new grpc::Method<global::Proto.Messages.Pose, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly grpc::Method<global::Proto.Messages.ImageStamped, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Update = new grpc::Method<global::Proto.Messages.ImageStamped, global::Google.Protobuf.WellKnownTypes.Empty>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "UpdatePose",
-        __Marshaller_Pose,
+        "Update",
+        __Marshaller_ImageStamped,
         __Marshaller_google_protobuf_Empty);
 
     /// <summary>Service descriptor</summary>
@@ -127,93 +123,94 @@ namespace Proto.Services {
       get { return global::Proto.Services.ServicesReflection.Descriptor.Services[1]; }
     }
 
-    /// <summary>Base class for server-side implementations of PoseService</summary>
-    [grpc::BindServiceMethod(typeof(PoseService), "BindService")]
-    public abstract partial class PoseServiceBase
+    /// <summary>Base class for server-side implementations of LiveUSImageService</summary>
+    [grpc::BindServiceMethod(typeof(LiveUSImageService), "BindService")]
+    public abstract partial class LiveUSImageServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> UpdatePose(global::Proto.Messages.Pose request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Update(global::Proto.Messages.ImageStamped request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
     }
 
-    /// <summary>Client for PoseService</summary>
-    public partial class PoseServiceClient : grpc::ClientBase<PoseServiceClient>
+    /// <summary>Client for LiveUSImageService</summary>
+    public partial class LiveUSImageServiceClient : grpc::ClientBase<LiveUSImageServiceClient>
     {
-      /// <summary>Creates a new client for PoseService</summary>
+      /// <summary>Creates a new client for LiveUSImageService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
-      public PoseServiceClient(grpc::ChannelBase channel) : base(channel)
+      public LiveUSImageServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for PoseService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for LiveUSImageService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public PoseServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public LiveUSImageServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected PoseServiceClient() : base()
+      protected LiveUSImageServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
-      protected PoseServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected LiveUSImageServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty UpdatePose(global::Proto.Messages.Pose request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.ImageStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return UpdatePose(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Update(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty UpdatePose(global::Proto.Messages.Pose request, grpc::CallOptions options)
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.ImageStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_UpdatePose, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_Update, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdatePoseAsync(global::Proto.Messages.Pose request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.ImageStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return UpdatePoseAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return UpdateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdatePoseAsync(global::Proto.Messages.Pose request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.ImageStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_UpdatePose, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_Update, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override PoseServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override LiveUSImageServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new PoseServiceClient(configuration);
+        return new LiveUSImageServiceClient(configuration);
       }
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(PoseServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(LiveUSImageServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_UpdatePose, serviceImpl.UpdatePose).Build();
+          .AddMethod(__Method_Update, serviceImpl.Update).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
     /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, PoseServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, LiveUSImageServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_UpdatePose, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.Pose, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.UpdatePose));
+      serviceBinder.AddMethod(__Method_Update, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.ImageStamped, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Update));
     }
 
   }
-  public static partial class HelloService
+  public static partial class USMeshService
   {
-    static readonly string __ServiceName = "HelloService";
+    static readonly string __ServiceName = "USMeshService";
 
-    static readonly grpc::Marshaller<global::Proto.Messages.HelloMessage> __Marshaller_HelloMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.HelloMessage.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Proto.Messages.MeshStamped> __Marshaller_MeshStamped = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Messages.MeshStamped.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::Proto.Messages.HelloMessage, global::Proto.Messages.HelloMessage> __Method_SayHello = new grpc::Method<global::Proto.Messages.HelloMessage, global::Proto.Messages.HelloMessage>(
+    static readonly grpc::Method<global::Proto.Messages.MeshStamped, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Update = new grpc::Method<global::Proto.Messages.MeshStamped, global::Google.Protobuf.WellKnownTypes.Empty>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "SayHello",
-        __Marshaller_HelloMessage,
-        __Marshaller_HelloMessage);
+        "Update",
+        __Marshaller_MeshStamped,
+        __Marshaller_google_protobuf_Empty);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -221,78 +218,78 @@ namespace Proto.Services {
       get { return global::Proto.Services.ServicesReflection.Descriptor.Services[2]; }
     }
 
-    /// <summary>Base class for server-side implementations of HelloService</summary>
-    [grpc::BindServiceMethod(typeof(HelloService), "BindService")]
-    public abstract partial class HelloServiceBase
+    /// <summary>Base class for server-side implementations of USMeshService</summary>
+    [grpc::BindServiceMethod(typeof(USMeshService), "BindService")]
+    public abstract partial class USMeshServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Proto.Messages.HelloMessage> SayHello(global::Proto.Messages.HelloMessage request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Update(global::Proto.Messages.MeshStamped request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
     }
 
-    /// <summary>Client for HelloService</summary>
-    public partial class HelloServiceClient : grpc::ClientBase<HelloServiceClient>
+    /// <summary>Client for USMeshService</summary>
+    public partial class USMeshServiceClient : grpc::ClientBase<USMeshServiceClient>
     {
-      /// <summary>Creates a new client for HelloService</summary>
+      /// <summary>Creates a new client for USMeshService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
-      public HelloServiceClient(grpc::ChannelBase channel) : base(channel)
+      public USMeshServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for HelloService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for USMeshService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public HelloServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public USMeshServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected HelloServiceClient() : base()
+      protected USMeshServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
-      protected HelloServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected USMeshServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
-      public virtual global::Proto.Messages.HelloMessage SayHello(global::Proto.Messages.HelloMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.MeshStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SayHello(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Update(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Proto.Messages.HelloMessage SayHello(global::Proto.Messages.HelloMessage request, grpc::CallOptions options)
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty Update(global::Proto.Messages.MeshStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_SayHello, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_Update, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Proto.Messages.HelloMessage> SayHelloAsync(global::Proto.Messages.HelloMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.MeshStamped request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SayHelloAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return UpdateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Proto.Messages.HelloMessage> SayHelloAsync(global::Proto.Messages.HelloMessage request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UpdateAsync(global::Proto.Messages.MeshStamped request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_SayHello, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_Update, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override HelloServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override USMeshServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new HelloServiceClient(configuration);
+        return new USMeshServiceClient(configuration);
       }
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(HelloServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(USMeshServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SayHello, serviceImpl.SayHello).Build();
+          .AddMethod(__Method_Update, serviceImpl.Update).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
     /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, HelloServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, USMeshServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_SayHello, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.HelloMessage, global::Proto.Messages.HelloMessage>(serviceImpl.SayHello));
+      serviceBinder.AddMethod(__Method_Update, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Messages.MeshStamped, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Update));
     }
 
   }

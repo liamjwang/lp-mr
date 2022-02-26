@@ -24,32 +24,41 @@ namespace Proto.Messages {
     static MessagesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5tZXNzYWdlcy5wcm90byInCgRNZXNoEhAKCHZlcnRpY2VzGAEgAygCEg0K",
-            "BWZhY2VzGAIgAygFIioKB1ZlY3RvcjMSCQoBeBgBIAEoAhIJCgF5GAIgASgC",
-            "EgkKAXoYAyABKAIiOAoKUXVhdGVybmlvbhIJCgF4GAEgASgCEgkKAXkYAiAB",
-            "KAISCQoBehgDIAEoAhIJCgF3GAQgASgCIkQKBFBvc2USGgoIcG9zaXRpb24Y",
-            "ASABKAsyCC5WZWN0b3IzEiAKC29yaWVudGF0aW9uGAIgASgLMgsuUXVhdGVy",
-            "bmlvbiIfCgxIZWxsb01lc3NhZ2USDwoHbWVzc2FnZRgBIAEoCUIRqgIOUHJv",
-            "dG8uTWVzc2FnZXNiBnByb3RvMw=="));
+            "Cg5tZXNzYWdlcy5wcm90byIWCgRUaW1lEg4KBm1pbGxpcxgBIAEoBCIqCgdW",
+            "ZWN0b3IzEgkKAXgYASABKAISCQoBeRgCIAEoAhIJCgF6GAMgASgCIjgKClF1",
+            "YXRlcm5pb24SCQoBeBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAISCQoB",
+            "dxgEIAEoAiJECgRQb3NlEhoKCHBvc2l0aW9uGAEgASgLMgguVmVjdG9yMxIg",
+            "CgtvcmllbnRhdGlvbhgCIAEoCzILLlF1YXRlcm5pb24iOAoLUG9zZVN0YW1w",
+            "ZWQSFAoFc3RhbXAYASABKAsyBS5UaW1lEhMKBHBvc2UYAiABKAsyBS5Qb3Nl",
+            "IicKBE1lc2gSEAoIdmVydGljZXMYASADKAISDQoFZmFjZXMYAiADKAUiTQoL",
+            "TWVzaFN0YW1wZWQSFAoFc3RhbXAYASABKAsyBS5UaW1lEhMKBHBvc2UYAiAB",
+            "KAsyBS5Qb3NlEhMKBG1lc2gYAyABKAsyBS5NZXNoIhkKCVJHQkFJbWFnZRIM",
+            "CgRkYXRhGAEgASgMIlQKDEltYWdlU3RhbXBlZBIUCgVzdGFtcBgBIAEoCzIF",
+            "LlRpbWUSEwoEcG9zZRgCIAEoCzIFLlBvc2USGQoFaW1hZ2UYAyABKAsyCi5S",
+            "R0JBSW1hZ2VCEaoCDlByb3RvLk1lc3NhZ2VzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Mesh), global::Proto.Messages.Mesh.Parser, new[]{ "Vertices", "Faces" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Time), global::Proto.Messages.Time.Parser, new[]{ "Millis" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Vector3), global::Proto.Messages.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Quaternion), global::Proto.Messages.Quaternion.Parser, new[]{ "X", "Y", "Z", "W" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Pose), global::Proto.Messages.Pose.Parser, new[]{ "Position", "Orientation" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.HelloMessage), global::Proto.Messages.HelloMessage.Parser, new[]{ "Message" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.PoseStamped), global::Proto.Messages.PoseStamped.Parser, new[]{ "Stamp", "Pose" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Mesh), global::Proto.Messages.Mesh.Parser, new[]{ "Vertices", "Faces" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.MeshStamped), global::Proto.Messages.MeshStamped.Parser, new[]{ "Stamp", "Pose", "Mesh" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.RGBAImage), global::Proto.Messages.RGBAImage.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.ImageStamped), global::Proto.Messages.ImageStamped.Parser, new[]{ "Stamp", "Pose", "Image" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class Mesh : pb::IMessage<Mesh> {
-    private static readonly pb::MessageParser<Mesh> _parser = new pb::MessageParser<Mesh>(() => new Mesh());
+  public sealed partial class Time : pb::IMessage<Time> {
+    private static readonly pb::MessageParser<Time> _parser = new pb::MessageParser<Time>(() => new Time());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Mesh> Parser { get { return _parser; } }
+    public static pb::MessageParser<Time> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -62,67 +71,55 @@ namespace Proto.Messages {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Mesh() {
+    public Time() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Mesh(Mesh other) : this() {
-      vertices_ = other.vertices_.Clone();
-      faces_ = other.faces_.Clone();
+    public Time(Time other) : this() {
+      millis_ = other.millis_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Mesh Clone() {
-      return new Mesh(this);
+    public Time Clone() {
+      return new Time(this);
     }
 
-    /// <summary>Field number for the "vertices" field.</summary>
-    public const int VerticesFieldNumber = 1;
-    private static readonly pb::FieldCodec<float> _repeated_vertices_codec
-        = pb::FieldCodec.ForFloat(10);
-    private readonly pbc::RepeatedField<float> vertices_ = new pbc::RepeatedField<float>();
+    /// <summary>Field number for the "millis" field.</summary>
+    public const int MillisFieldNumber = 1;
+    private ulong millis_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<float> Vertices {
-      get { return vertices_; }
-    }
-
-    /// <summary>Field number for the "faces" field.</summary>
-    public const int FacesFieldNumber = 2;
-    private static readonly pb::FieldCodec<int> _repeated_faces_codec
-        = pb::FieldCodec.ForInt32(18);
-    private readonly pbc::RepeatedField<int> faces_ = new pbc::RepeatedField<int>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<int> Faces {
-      get { return faces_; }
+    public ulong Millis {
+      get { return millis_; }
+      set {
+        millis_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as Mesh);
+      return Equals(other as Time);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Mesh other) {
+    public bool Equals(Time other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!vertices_.Equals(other.vertices_)) return false;
-      if(!faces_.Equals(other.faces_)) return false;
+      if (Millis != other.Millis) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= vertices_.GetHashCode();
-      hash ^= faces_.GetHashCode();
+      if (Millis != 0UL) hash ^= Millis.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -136,8 +133,10 @@ namespace Proto.Messages {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      vertices_.WriteTo(output, _repeated_vertices_codec);
-      faces_.WriteTo(output, _repeated_faces_codec);
+      if (Millis != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(Millis);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -146,8 +145,9 @@ namespace Proto.Messages {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += vertices_.CalculateSize(_repeated_vertices_codec);
-      size += faces_.CalculateSize(_repeated_faces_codec);
+      if (Millis != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Millis);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -155,12 +155,13 @@ namespace Proto.Messages {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Mesh other) {
+    public void MergeFrom(Time other) {
       if (other == null) {
         return;
       }
-      vertices_.Add(other.vertices_);
-      faces_.Add(other.faces_);
+      if (other.Millis != 0UL) {
+        Millis = other.Millis;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -172,14 +173,8 @@ namespace Proto.Messages {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10:
-          case 13: {
-            vertices_.AddEntriesFrom(input, _repeated_vertices_codec);
-            break;
-          }
-          case 18:
-          case 16: {
-            faces_.AddEntriesFrom(input, _repeated_faces_codec);
+          case 8: {
+            Millis = input.ReadUInt64();
             break;
           }
         }
@@ -755,11 +750,11 @@ namespace Proto.Messages {
 
   }
 
-  public sealed partial class HelloMessage : pb::IMessage<HelloMessage> {
-    private static readonly pb::MessageParser<HelloMessage> _parser = new pb::MessageParser<HelloMessage>(() => new HelloMessage());
+  public sealed partial class PoseStamped : pb::IMessage<PoseStamped> {
+    private static readonly pb::MessageParser<PoseStamped> _parser = new pb::MessageParser<PoseStamped>(() => new PoseStamped());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<HelloMessage> Parser { get { return _parser; } }
+    public static pb::MessageParser<PoseStamped> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -772,55 +767,69 @@ namespace Proto.Messages {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HelloMessage() {
+    public PoseStamped() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HelloMessage(HelloMessage other) : this() {
-      message_ = other.message_;
+    public PoseStamped(PoseStamped other) : this() {
+      stamp_ = other.stamp_ != null ? other.stamp_.Clone() : null;
+      pose_ = other.pose_ != null ? other.pose_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HelloMessage Clone() {
-      return new HelloMessage(this);
+    public PoseStamped Clone() {
+      return new PoseStamped(this);
     }
 
-    /// <summary>Field number for the "message" field.</summary>
-    public const int MessageFieldNumber = 1;
-    private string message_ = "";
+    /// <summary>Field number for the "stamp" field.</summary>
+    public const int StampFieldNumber = 1;
+    private global::Proto.Messages.Time stamp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Message {
-      get { return message_; }
+    public global::Proto.Messages.Time Stamp {
+      get { return stamp_; }
       set {
-        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        stamp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pose" field.</summary>
+    public const int PoseFieldNumber = 2;
+    private global::Proto.Messages.Pose pose_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Pose Pose {
+      get { return pose_; }
+      set {
+        pose_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as HelloMessage);
+      return Equals(other as PoseStamped);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(HelloMessage other) {
+    public bool Equals(PoseStamped other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Message != other.Message) return false;
+      if (!object.Equals(Stamp, other.Stamp)) return false;
+      if (!object.Equals(Pose, other.Pose)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (stamp_ != null) hash ^= Stamp.GetHashCode();
+      if (pose_ != null) hash ^= Pose.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -834,9 +843,13 @@ namespace Proto.Messages {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Message.Length != 0) {
+      if (stamp_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(Message);
+        output.WriteMessage(Stamp);
+      }
+      if (pose_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Pose);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -846,8 +859,11 @@ namespace Proto.Messages {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Message.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      if (stamp_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Stamp);
+      }
+      if (pose_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pose);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -856,12 +872,21 @@ namespace Proto.Messages {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(HelloMessage other) {
+    public void MergeFrom(PoseStamped other) {
       if (other == null) {
         return;
       }
-      if (other.Message.Length != 0) {
-        Message = other.Message;
+      if (other.stamp_ != null) {
+        if (stamp_ == null) {
+          Stamp = new global::Proto.Messages.Time();
+        }
+        Stamp.MergeFrom(other.Stamp);
+      }
+      if (other.pose_ != null) {
+        if (pose_ == null) {
+          Pose = new global::Proto.Messages.Pose();
+        }
+        Pose.MergeFrom(other.Pose);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -875,7 +900,695 @@ namespace Proto.Messages {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Message = input.ReadString();
+            if (stamp_ == null) {
+              Stamp = new global::Proto.Messages.Time();
+            }
+            input.ReadMessage(Stamp);
+            break;
+          }
+          case 18: {
+            if (pose_ == null) {
+              Pose = new global::Proto.Messages.Pose();
+            }
+            input.ReadMessage(Pose);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Mesh : pb::IMessage<Mesh> {
+    private static readonly pb::MessageParser<Mesh> _parser = new pb::MessageParser<Mesh>(() => new Mesh());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Mesh> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.Messages.MessagesReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mesh() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mesh(Mesh other) : this() {
+      vertices_ = other.vertices_.Clone();
+      faces_ = other.faces_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mesh Clone() {
+      return new Mesh(this);
+    }
+
+    /// <summary>Field number for the "vertices" field.</summary>
+    public const int VerticesFieldNumber = 1;
+    private static readonly pb::FieldCodec<float> _repeated_vertices_codec
+        = pb::FieldCodec.ForFloat(10);
+    private readonly pbc::RepeatedField<float> vertices_ = new pbc::RepeatedField<float>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<float> Vertices {
+      get { return vertices_; }
+    }
+
+    /// <summary>Field number for the "faces" field.</summary>
+    public const int FacesFieldNumber = 2;
+    private static readonly pb::FieldCodec<int> _repeated_faces_codec
+        = pb::FieldCodec.ForInt32(18);
+    private readonly pbc::RepeatedField<int> faces_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> Faces {
+      get { return faces_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Mesh);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Mesh other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!vertices_.Equals(other.vertices_)) return false;
+      if(!faces_.Equals(other.faces_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= vertices_.GetHashCode();
+      hash ^= faces_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      vertices_.WriteTo(output, _repeated_vertices_codec);
+      faces_.WriteTo(output, _repeated_faces_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += vertices_.CalculateSize(_repeated_vertices_codec);
+      size += faces_.CalculateSize(_repeated_faces_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Mesh other) {
+      if (other == null) {
+        return;
+      }
+      vertices_.Add(other.vertices_);
+      faces_.Add(other.faces_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 13: {
+            vertices_.AddEntriesFrom(input, _repeated_vertices_codec);
+            break;
+          }
+          case 18:
+          case 16: {
+            faces_.AddEntriesFrom(input, _repeated_faces_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class MeshStamped : pb::IMessage<MeshStamped> {
+    private static readonly pb::MessageParser<MeshStamped> _parser = new pb::MessageParser<MeshStamped>(() => new MeshStamped());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MeshStamped> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.Messages.MessagesReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MeshStamped() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MeshStamped(MeshStamped other) : this() {
+      stamp_ = other.stamp_ != null ? other.stamp_.Clone() : null;
+      pose_ = other.pose_ != null ? other.pose_.Clone() : null;
+      mesh_ = other.mesh_ != null ? other.mesh_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MeshStamped Clone() {
+      return new MeshStamped(this);
+    }
+
+    /// <summary>Field number for the "stamp" field.</summary>
+    public const int StampFieldNumber = 1;
+    private global::Proto.Messages.Time stamp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Time Stamp {
+      get { return stamp_; }
+      set {
+        stamp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pose" field.</summary>
+    public const int PoseFieldNumber = 2;
+    private global::Proto.Messages.Pose pose_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Pose Pose {
+      get { return pose_; }
+      set {
+        pose_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "mesh" field.</summary>
+    public const int MeshFieldNumber = 3;
+    private global::Proto.Messages.Mesh mesh_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Mesh Mesh {
+      get { return mesh_; }
+      set {
+        mesh_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MeshStamped);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MeshStamped other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Stamp, other.Stamp)) return false;
+      if (!object.Equals(Pose, other.Pose)) return false;
+      if (!object.Equals(Mesh, other.Mesh)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (stamp_ != null) hash ^= Stamp.GetHashCode();
+      if (pose_ != null) hash ^= Pose.GetHashCode();
+      if (mesh_ != null) hash ^= Mesh.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (stamp_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Stamp);
+      }
+      if (pose_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Pose);
+      }
+      if (mesh_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Mesh);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (stamp_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Stamp);
+      }
+      if (pose_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pose);
+      }
+      if (mesh_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Mesh);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MeshStamped other) {
+      if (other == null) {
+        return;
+      }
+      if (other.stamp_ != null) {
+        if (stamp_ == null) {
+          Stamp = new global::Proto.Messages.Time();
+        }
+        Stamp.MergeFrom(other.Stamp);
+      }
+      if (other.pose_ != null) {
+        if (pose_ == null) {
+          Pose = new global::Proto.Messages.Pose();
+        }
+        Pose.MergeFrom(other.Pose);
+      }
+      if (other.mesh_ != null) {
+        if (mesh_ == null) {
+          Mesh = new global::Proto.Messages.Mesh();
+        }
+        Mesh.MergeFrom(other.Mesh);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (stamp_ == null) {
+              Stamp = new global::Proto.Messages.Time();
+            }
+            input.ReadMessage(Stamp);
+            break;
+          }
+          case 18: {
+            if (pose_ == null) {
+              Pose = new global::Proto.Messages.Pose();
+            }
+            input.ReadMessage(Pose);
+            break;
+          }
+          case 26: {
+            if (mesh_ == null) {
+              Mesh = new global::Proto.Messages.Mesh();
+            }
+            input.ReadMessage(Mesh);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class RGBAImage : pb::IMessage<RGBAImage> {
+    private static readonly pb::MessageParser<RGBAImage> _parser = new pb::MessageParser<RGBAImage>(() => new RGBAImage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RGBAImage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.Messages.MessagesReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RGBAImage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RGBAImage(RGBAImage other) : this() {
+      data_ = other.data_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RGBAImage Clone() {
+      return new RGBAImage(this);
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 1;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RGBAImage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RGBAImage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Data != other.Data) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Data.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteBytes(Data);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RGBAImage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Data = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ImageStamped : pb::IMessage<ImageStamped> {
+    private static readonly pb::MessageParser<ImageStamped> _parser = new pb::MessageParser<ImageStamped>(() => new ImageStamped());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ImageStamped> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.Messages.MessagesReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ImageStamped() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ImageStamped(ImageStamped other) : this() {
+      stamp_ = other.stamp_ != null ? other.stamp_.Clone() : null;
+      pose_ = other.pose_ != null ? other.pose_.Clone() : null;
+      image_ = other.image_ != null ? other.image_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ImageStamped Clone() {
+      return new ImageStamped(this);
+    }
+
+    /// <summary>Field number for the "stamp" field.</summary>
+    public const int StampFieldNumber = 1;
+    private global::Proto.Messages.Time stamp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Time Stamp {
+      get { return stamp_; }
+      set {
+        stamp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pose" field.</summary>
+    public const int PoseFieldNumber = 2;
+    private global::Proto.Messages.Pose pose_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.Pose Pose {
+      get { return pose_; }
+      set {
+        pose_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "image" field.</summary>
+    public const int ImageFieldNumber = 3;
+    private global::Proto.Messages.RGBAImage image_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.Messages.RGBAImage Image {
+      get { return image_; }
+      set {
+        image_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ImageStamped);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ImageStamped other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Stamp, other.Stamp)) return false;
+      if (!object.Equals(Pose, other.Pose)) return false;
+      if (!object.Equals(Image, other.Image)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (stamp_ != null) hash ^= Stamp.GetHashCode();
+      if (pose_ != null) hash ^= Pose.GetHashCode();
+      if (image_ != null) hash ^= Image.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (stamp_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Stamp);
+      }
+      if (pose_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Pose);
+      }
+      if (image_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Image);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (stamp_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Stamp);
+      }
+      if (pose_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pose);
+      }
+      if (image_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Image);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ImageStamped other) {
+      if (other == null) {
+        return;
+      }
+      if (other.stamp_ != null) {
+        if (stamp_ == null) {
+          Stamp = new global::Proto.Messages.Time();
+        }
+        Stamp.MergeFrom(other.Stamp);
+      }
+      if (other.pose_ != null) {
+        if (pose_ == null) {
+          Pose = new global::Proto.Messages.Pose();
+        }
+        Pose.MergeFrom(other.Pose);
+      }
+      if (other.image_ != null) {
+        if (image_ == null) {
+          Image = new global::Proto.Messages.RGBAImage();
+        }
+        Image.MergeFrom(other.Image);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (stamp_ == null) {
+              Stamp = new global::Proto.Messages.Time();
+            }
+            input.ReadMessage(Stamp);
+            break;
+          }
+          case 18: {
+            if (pose_ == null) {
+              Pose = new global::Proto.Messages.Pose();
+            }
+            input.ReadMessage(Pose);
+            break;
+          }
+          case 26: {
+            if (image_ == null) {
+              Image = new global::Proto.Messages.RGBAImage();
+            }
+            input.ReadMessage(Image);
             break;
           }
         }

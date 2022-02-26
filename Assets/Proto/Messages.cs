@@ -32,10 +32,11 @@ namespace Proto.Messages {
             "ZWQSFAoFc3RhbXAYASABKAsyBS5UaW1lEhMKBHBvc2UYAiABKAsyBS5Qb3Nl",
             "IicKBE1lc2gSEAoIdmVydGljZXMYASADKAISDQoFZmFjZXMYAiADKAUiTQoL",
             "TWVzaFN0YW1wZWQSFAoFc3RhbXAYASABKAsyBS5UaW1lEhMKBHBvc2UYAiAB",
-            "KAsyBS5Qb3NlEhMKBG1lc2gYAyABKAsyBS5NZXNoIhkKCVJHQkFJbWFnZRIM",
-            "CgRkYXRhGAEgASgMIlQKDEltYWdlU3RhbXBlZBIUCgVzdGFtcBgBIAEoCzIF",
-            "LlRpbWUSEwoEcG9zZRgCIAEoCzIFLlBvc2USGQoFaW1hZ2UYAyABKAsyCi5S",
-            "R0JBSW1hZ2VCEaoCDlByb3RvLk1lc3NhZ2VzYgZwcm90bzM="));
+            "KAsyBS5Qb3NlEhMKBG1lc2gYAyABKAsyBS5NZXNoIjgKCVJHQkFJbWFnZRIN",
+            "CgV3aWR0aBgBIAEoBRIOCgZoZWlnaHQYAiABKAUSDAoEZGF0YRgDIAEoDCJU",
+            "CgxJbWFnZVN0YW1wZWQSFAoFc3RhbXAYASABKAsyBS5UaW1lEhMKBHBvc2UY",
+            "AiABKAsyBS5Qb3NlEhkKBWltYWdlGAMgASgLMgouUkdCQUltYWdlQhGqAg5Q",
+            "cm90by5NZXNzYWdlc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -46,7 +47,7 @@ namespace Proto.Messages {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.PoseStamped), global::Proto.Messages.PoseStamped.Parser, new[]{ "Stamp", "Pose" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.Mesh), global::Proto.Messages.Mesh.Parser, new[]{ "Vertices", "Faces" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.MeshStamped), global::Proto.Messages.MeshStamped.Parser, new[]{ "Stamp", "Pose", "Mesh" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.RGBAImage), global::Proto.Messages.RGBAImage.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.RGBAImage), global::Proto.Messages.RGBAImage.Parser, new[]{ "Width", "Height", "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Messages.ImageStamped), global::Proto.Messages.ImageStamped.Parser, new[]{ "Stamp", "Pose", "Image" }, null, null, null)
           }));
     }
@@ -1290,6 +1291,8 @@ namespace Proto.Messages {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RGBAImage(RGBAImage other) : this() {
+      width_ = other.width_;
+      height_ = other.height_;
       data_ = other.data_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1299,8 +1302,30 @@ namespace Proto.Messages {
       return new RGBAImage(this);
     }
 
+    /// <summary>Field number for the "width" field.</summary>
+    public const int WidthFieldNumber = 1;
+    private int width_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Width {
+      get { return width_; }
+      set {
+        width_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "height" field.</summary>
+    public const int HeightFieldNumber = 2;
+    private int height_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Height {
+      get { return height_; }
+      set {
+        height_ = value;
+      }
+    }
+
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 1;
+    public const int DataFieldNumber = 3;
     private pb::ByteString data_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString Data {
@@ -1323,6 +1348,8 @@ namespace Proto.Messages {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Width != other.Width) return false;
+      if (Height != other.Height) return false;
       if (Data != other.Data) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1330,6 +1357,8 @@ namespace Proto.Messages {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Width != 0) hash ^= Width.GetHashCode();
+      if (Height != 0) hash ^= Height.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1344,8 +1373,16 @@ namespace Proto.Messages {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Width != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Width);
+      }
+      if (Height != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Height);
+      }
       if (Data.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(26);
         output.WriteBytes(Data);
       }
       if (_unknownFields != null) {
@@ -1356,6 +1393,12 @@ namespace Proto.Messages {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Width != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Width);
+      }
+      if (Height != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Height);
+      }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
       }
@@ -1369,6 +1412,12 @@ namespace Proto.Messages {
     public void MergeFrom(RGBAImage other) {
       if (other == null) {
         return;
+      }
+      if (other.Width != 0) {
+        Width = other.Width;
+      }
+      if (other.Height != 0) {
+        Height = other.Height;
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
@@ -1384,7 +1433,15 @@ namespace Proto.Messages {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 8: {
+            Width = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Height = input.ReadInt32();
+            break;
+          }
+          case 26: {
             Data = input.ReadBytes();
             break;
           }

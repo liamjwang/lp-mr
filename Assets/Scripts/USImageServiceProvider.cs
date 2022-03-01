@@ -21,6 +21,8 @@ public class USImageServiceProvider : IServiceProviderBehavior
     private Texture2D texture;
     private string temporaryCachePath;
 
+    private int lastUsed = 0;
+
 
     public override ServerServiceDefinition getServiceDefinition()
     {
@@ -34,7 +36,7 @@ public class USImageServiceProvider : IServiceProviderBehavior
 
     IEnumerator GetText()
     {
-        var path = "file://"+temporaryCachePath + "/image.png";
+        var path = "file://"+temporaryCachePath + "/image"+lastUsed+".png";
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(path))
         {
@@ -79,11 +81,13 @@ public class USImageServiceProvider : IServiceProviderBehavior
         {
             try
             {
+                int newWritten = (_parent.lastUsed + 1) % 4;
                 
                 ByteString byteString = request.Image.Data; // to texture
                 // save to file in Application.temporaryCachePath/image.png
-                var path = _parent.temporaryCachePath + "/image.png";
+                var path = _parent.temporaryCachePath + "/image"+newWritten+".png";
                 File.WriteAllBytes(path, byteString.ToByteArray());
+                _parent.lastUsed = newWritten;
                 _parent.flag = true;
 
                 // Texture2D texture = new Texture2D(request.Image.Width, request.Image.Height);

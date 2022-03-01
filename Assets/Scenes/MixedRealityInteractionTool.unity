@@ -1449,8 +1449,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226136757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1931, y: -0.05891554, z: 1.274}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1931, y: -0.05891554, z: 0.47542316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1239372982}
   - {fileID: 768579444}
@@ -5335,7 +5335,7 @@ GameObject:
   - component: {fileID: 1118770521}
   - component: {fileID: 1118770519}
   m_Layer: 0
-  m_Name: External US Slate
+  m_Name: ExtUSSlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5506,7 +5506,7 @@ MonoBehaviour:
   minDistance: 0.4
   maxDistance: 0.5
   minViewDegrees: 0
-  maxViewDegrees: 10
+  maxViewDegrees: 25
   aspectV: 1
   ignoreAngleClamp: 0
   ignoreDistanceClamp: 0
@@ -7481,7 +7481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5842008468435884931, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_Name
-      value: Hand Menu
+      value: HandMenu_Large_WorldLock_On_GrabAndPull
       objectReference: {fileID: 0}
     - target: {fileID: 5842008468435884934, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: trackedHandness

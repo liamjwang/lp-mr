@@ -10,11 +10,15 @@ using Grpc.Core;
 using Proto.Services;
 using UnityEngine;
 using UnityEngine.Networking;
+using Pose = Proto.Messages.Pose;
 
 public class USImageServiceProvider : IServiceProviderBehavior
 {
     
     public MeshRenderer targetMeshRenderer;
+    public Transform targetTransform;
+
+    private Pose lastPose;
     private Proto.Messages.ImageStamped imageStamped;
     private bool flag;
     private static readonly int MainTex = Shader.PropertyToID("_MainTex");
@@ -66,6 +70,11 @@ public class USImageServiceProvider : IServiceProviderBehavior
         if (flag)
         {
             StartCoroutine(GetText());
+            if (lastPose != null)
+            {
+                targetTransform.localPosition = new Vector3(lastPose.Position.X, lastPose.Position.Y, lastPose.Position.Z);
+                targetTransform.localRotation = new Quaternion(lastPose.Orientation.X, lastPose.Orientation.Y, lastPose.Orientation.Z, lastPose.Orientation.W);
+            }
             flag = false;
         }
     }
@@ -84,6 +93,7 @@ public class USImageServiceProvider : IServiceProviderBehavior
                 int newWritten = (_parent.lastUsed + 1) % 4;
                 
                 ByteString byteString = request.Image.Data; // to texture
+                _parent.lastPose = request.Pose;
                 // save to file in Application.temporaryCachePath/image.png
                 var path = _parent.temporaryCachePath + "/image"+newWritten+".png";
                 File.WriteAllBytes(path, byteString.ToByteArray());

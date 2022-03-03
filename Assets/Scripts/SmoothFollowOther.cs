@@ -11,6 +11,7 @@ public class SmoothFollowOther : MonoBehaviour
     private float currVel = 0;
     public float translateSmoothTime = 0.3F;
     public float rotateSmoothTime = 0.3F;
+    public bool followScale = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class SmoothFollowOther : MonoBehaviour
             myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
         }
 
-        myTransform.localScale = other.localScale;
+        if (followScale)
+            myTransform.localScale = other.localScale;
     }
 }

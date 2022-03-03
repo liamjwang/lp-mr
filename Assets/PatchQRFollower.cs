@@ -28,6 +28,7 @@ public class PatchQRFollower : SingleQRFollower
             quad.transform.localPosition = new Vector3(code.PhysicalSize / 2.0f, code.PhysicalSize / 2.0f, 0.0f);
             quad.transform.localScale = new Vector3(code.PhysicalSize, code.PhysicalSize, 1.0f);
             center.transform.localPosition = new Vector3(code.PhysicalSize / 2.0f, code.PhysicalSize / 2.0f, 0.0f);
+            transform.localScale = Vector3.one;
         }
         
     }

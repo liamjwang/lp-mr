@@ -6,20 +6,25 @@ Shader "Unlit/Outline"
         _OutlineWidth ("Outline Width", Range(0, 1)) = 0.1
         _OutlineColor ("Outline Color", Color) = (0.0, 0.0, 0.0, 1.0)
         _FillColor ("Fill Color", Color) = (0.0, 0.0, 0.0, 0.0)
+        _Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+            
     }
     SubShader
     {
-        Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+        Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
         LOD 100
 //        Cull Off
-        ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha 
+//        ZWrite Off
+//        Blend SrcAlpha OneMinusSrcAlpha 
+        Lighting Off
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
-            #pragma fragment frag alphatest:_Cutoff
+            #pragma fragment frag
+            #pragma target 2.0
+            // alphatest:_Cutoff
             // #pragma surface surf Standard alphatest:_Cutoff addshadow
             // make fog work
             // #pragma multi_compile_fog
@@ -46,6 +51,7 @@ Shader "Unlit/Outline"
             float _OutlineWidth;
             fixed4 _OutlineColor;
             fixed4 _FillColor;
+            fixed4 _Cutoff;
 
             v2f vert (appdata v)
             {
@@ -69,6 +75,7 @@ Shader "Unlit/Outline"
                 // col = i.uv.xxxx;
                 // apply fog
                 // UNITY_APPLY_FOG(i.fogCoord, col);
+                clip(_OutlineWidth-squareGradient);
                 return col;
             }
             ENDCG

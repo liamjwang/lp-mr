@@ -1,11 +1,17 @@
-﻿name: Actions 😎
+﻿name: Build players
 
 on: [push, pull_request]
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - WSAPlayer # HoloLens 2
+          - Android # Oculus Quest
     steps:
       # Checkout
       - name: Checkout repository
@@ -17,7 +23,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}-${{ matrix.targetPlatform }}
           restore-keys: |
             Library-
 
@@ -38,10 +44,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           allowDirtyBuild: true
-          targetPlatform: Android
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
-          path: build
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}

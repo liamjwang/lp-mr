@@ -6317,6 +6317,10 @@ PrefabInstance:
       propertyPath: iconQuadTexture
       value: 
       objectReference: {fileID: 2800000, guid: bd30f98596e69f7469fda20a47760dd1, type: 3}
+    - target: {fileID: 2717396915851336439, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: iconQuadTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 559e1da0e65611c4f93ec931e1e6a8a2, type: 3}
     - target: {fileID: 2938491648976802004, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.size
       value: 3

@@ -84,7 +84,7 @@ jobs:
           allowDirtyBuild: true
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.project_name }}-${{ matrix.name }}
-          buildMethod: UnityBuilderAction.BuildScript.Build
+          buildMethod: UnityBuilderAction.Builder.BuildProject
       - name: Setup msbuild
         uses: microsoft/setup-msbuild@v1.1
       - run: dir -r

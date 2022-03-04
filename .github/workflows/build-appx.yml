@@ -1,0 +1,26 @@
+﻿name: Build appx
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Build appx
+    runs-on: ubuntu-latest    
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v1
+      with:
+       name: LumbarPunctureMR-Hololens2
+       path: ./
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      working-directory: LumbarPunctureMR-Hololens2
+      run: dotnet restore
+    - name: Build
+      working-directory: LumbarPunctureMR-Hololens2
+      run: dotnet build --no-restore
+    - name: Test
+      working-directory: LumbarPunctureMR-Hololens2
+      run: dotnet test --no-build --verbosity normal

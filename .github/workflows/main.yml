@@ -2,6 +2,9 @@
 
 on: [push, pull_request]
 
+env:
+  project_name: LumbarPunctureMR
+
 jobs:
   buildAndTestForLinuxBasedPlatforms:
     name: Build for ${{ matrix.name }}
@@ -11,7 +14,7 @@ jobs:
       matrix:
         include:
           - targetPlatform: Android
-            name: Oculus Quest
+            name: OculusQuest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -41,11 +44,12 @@ jobs:
         with:
           allowDirtyBuild: true
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: ${{ env.project_name }}-${{ matrix.name }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.name }}
-          path: build/${{ matrix.targetPlatform }}
+          name: ${{ env.project_name }}-${{ matrix.name }}
+          path: build/${{ env.project_name }}-${{ matrix.name }}
           
   buildForWindowsBasedPlatforms:
     name: Build for ${{ matrix.name }}
@@ -55,7 +59,7 @@ jobs:
       matrix:
         include:
           - targetPlatform: WSAPlayer
-            name: Hololens 2
+            name: Hololens2
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -79,8 +83,9 @@ jobs:
         with:
           allowDirtyBuild: true
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: ${{ env.project_name }}-${{ matrix.name }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.name }}
-          path: build/${{ matrix.targetPlatform }}
+          name: ${{ env.project_name }}-${{ matrix.name }}
+          path: build/${{ env.project_name }}-${{ matrix.name }}

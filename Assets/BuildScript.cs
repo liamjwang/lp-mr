@@ -48,6 +48,10 @@ namespace UnityBuilderAction
                 case BuildTarget.StandaloneOSX:
                     PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.Mono2x);
                     break;
+                case BuildTarget.WSAPlayer:
+                    EditorUserBuildSettings.SetPlatformSettings("WindowsStoreApps", "CopyReferences", "true");
+                    Console.WriteLine("Windows Store App build detected, setting CopyReferences to true");
+                    break;
             }
 
             // Custom build

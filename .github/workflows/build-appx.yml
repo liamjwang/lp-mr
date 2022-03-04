@@ -4,25 +4,25 @@ on:
 jobs:
   activation:
     name: Build appx
-    runs-on: ubuntu-latest    
+    runs-on: windows-2019
     steps:
 #    - name: Download Artifact
 #      uses: actions/download-artifact@v1
 #      with:
 #       name: LumbarPunctureMR-Hololens2
 #       path: ./
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      working-directory: LumbarPunctureMR-Hololens2
-      run: dotnet restore
-    - name: Build
-      working-directory: LumbarPunctureMR-Hololens2
-      run: dotnet build --no-restore
-    - name: Test
-      working-directory: LumbarPunctureMR-Hololens2
-      run: dotnet test --no-build --verbosity normal
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
+    - uses: microsoft/setup-msbuild@v1.1
+    - run: curl -L https://www.dropbox.com/s/lzdnlnu8rmhkn24/LumbarPunctureMR-Hololens2.zip?dl=0 --output a.zip && unzip a.zip
+    - working-directory: LumbarPunctureMR-Hololens2
+      run: msbuild .
+#    - name: Restore dependencies
+#      working-directory: LumbarPunctureMR-Hololens2
+#      run: dotnet restore
+#    - name: Build
+#      working-directory: LumbarPunctureMR-Hololens2
+#      run: dotnet build --no-restore
+#    - name: Test
+#      working-directory: LumbarPunctureMR-Hololens2
+#      run: dotnet test --no-build --verbosity normal

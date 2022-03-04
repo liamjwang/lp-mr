@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.project_name }}-${{ matrix.name }}
-          path: build/${{ env.project_name }}-${{ matrix.name }}
+          path: build/${{ matrix.targetPlatform }}
           
   buildForWindowsBasedPlatforms:
     name: Build for ${{ matrix.name }}
@@ -88,4 +88,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.project_name }}-${{ matrix.name }}
-          path: build/${{ env.project_name }}-${{ matrix.name }}
+          path: build/${{ matrix.targetPlatform }}

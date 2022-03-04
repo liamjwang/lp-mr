@@ -28,12 +28,14 @@ namespace UnityBuilderAction
 
       // Set version for this build
       VersionApplicator.SetVersion(options["buildVersion"]);
-      VersionApplicator.SetAndroidVersionCode(options["androidVersionCode"]);
       
       // Apply Android settings
       if (buildOptions.target == BuildTarget.Android)
+      {
+        VersionApplicator.SetAndroidVersionCode(options["androidVersionCode"]);
         AndroidSettings.Apply(options);
-      
+      }
+
       if (buildOptions.target == BuildTarget.WSAPlayer)
       { 
         EditorUserBuildSettings.SetPlatformSettings("WindowsStoreApps", "CopyReferences", "true");

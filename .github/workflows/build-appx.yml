@@ -6,11 +6,13 @@ jobs:
     name: Build appx
     runs-on: ubuntu-latest    
     steps:
-    - name: Download Artifact
-      uses: actions/download-artifact@v1
-      with:
-       name: LumbarPunctureMR-Hololens2
-       path: ./
+#    - name: Download Artifact
+#      uses: actions/download-artifact@v1
+#      with:
+#       name: LumbarPunctureMR-Hololens2
+#       path: ./
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:

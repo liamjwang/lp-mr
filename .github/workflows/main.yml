@@ -70,9 +70,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: Library
-          key: ${{ runner.OS }}-Library-${{ matrix.targetPlatform }}-${{ hashFiles(matrix.projectPath) }}
+          key: ${{ runner.OS }}-Library-${{ matrix.targetPlatform }}
           restore-keys: |
-            ${{ runner.OS }}-Library-${{ matrix.targetPlatform }}-
+            ${{ runner.OS }}-Library-${{ matrix.targetPlatform }}
             ${{ runner.OS }}-Library-
       - name: Build project
         uses: game-ci/unity-builder@v2

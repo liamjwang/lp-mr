@@ -2629,7 +2629,7 @@ GameObject:
   - component: {fileID: 392574850}
   - component: {fileID: 392574849}
   m_Layer: 0
-  m_Name: USMesh
+  m_Name: USMeshVis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4767,7 +4767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987864533}
   m_Layer: 0
-  m_Name: USMeshVisual
+  m_Name: USMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4897,7 +4897,7 @@ GameObject:
   - component: {fileID: 1016949866}
   - component: {fileID: 1016949867}
   m_Layer: 0
-  m_Name: USSlice
+  m_Name: USSliceVis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6977,6 +6977,143 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].ClassName
+      value: InteractableOnToggleReceiver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].AssemblyQualifiedName
+      value: Microsoft.MixedReality.Toolkit.UI.InteractableOnToggleReceiver, Microsoft.MixedReality.Toolkit.SDK,
+        Version=2.7.3.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].Name
+      value: OnDeselect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].Type
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Name
+      value: InteractionFilter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].Label
+      value: On Deselect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Label
+      value: Interaction Filter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].Tooltip
+      value: The toggle is deselected
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Tooltip
+      value: Specify whether press event is for near or far interaction
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].IntValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Options.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Options.Array.data[0]
+      value: Near and Far
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Options.Array.data[1]
+      value: Near Only
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[1].Options.Array.data[2]
+      value: Far Only
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3317880174979194217}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3317880174979194217}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4480280376495530736, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.size
       value: 3
@@ -8091,6 +8228,10 @@ PrefabInstance:
     - target: {fileID: 6444140680952708435, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444140681364337695, guid: f514427e4d7588143a828462e0fc1321, type: 3}
+      propertyPath: m_text
+      value: Toggle Mock Patch Visibility
       objectReference: {fileID: 0}
     - target: {fileID: 6444140681364337695, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_textAlignment
@@ -9215,7 +9356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621912747}
   m_Layer: 0
-  m_Name: USSliceVisual
+  m_Name: USSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

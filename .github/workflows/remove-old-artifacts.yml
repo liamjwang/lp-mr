@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: '0 1 * * 1' # once a week
+    - cron: '0 1 * * *' # once a day
   workflow_dispatch: { }
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
         with:
           age: '0 seconds'
           skip-tags: true
-          skip-recent: 3
+          skip-recent: 5

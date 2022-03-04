@@ -47,7 +47,7 @@ namespace UnityBuilderAction
         AndroidSettings.Apply(options);
       }
       
-      if (buildOptions.target == BuildTarget.WSAPlayer)
+      if (buildPlayerOptions.target == BuildTarget.WSAPlayer)
       { 
         EditorUserBuildSettings.SetPlatformSettings("WindowsStoreApps", "CopyReferences", "true");
         Console.WriteLine("Windows Store App CopyReferences set to true");

@@ -86,11 +86,12 @@ jobs:
           buildName: ${{ env.project_name }}-${{ matrix.name }}
       - name: Setup msbuild
         uses: microsoft/setup-msbuild@v1.1
+      - run: dir -r
       - name: Build visual studio project
-        working-directory: build/${{ matrix.targetPlatform }}
+        working-directory: build/${{ matrix.targetPlatform }}/${{ env.project_name }}-${{ matrix.name }}
         run: msbuild /m /t:build /p:Configuration=Release /p:Platform=ARM64
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.project_name }}-${{ matrix.name }}
-          path: build/${{ matrix.targetPlatform }}/AppPackages
+          path: build/${{ matrix.targetPlatform }}/${{ env.project_name }}-${{ matrix.name }}/AppPackages

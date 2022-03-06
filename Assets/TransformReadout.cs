@@ -32,8 +32,8 @@ public class TransformReadout : MonoBehaviour
         text.text = "";
         text.text += "Position:\n";
         // add trailing zeros to 5 decimal places
-        text.text += $"X: {relativeVector.x:0.00000}\n";
-        text.text += $"Y: {relativeVector.y:0.00000}\n";
-        text.text += $"Z: {relativeVector.z:0.00000}\n";
+        text.text += $"X: {relativeVector.x*1000,10:######0.000}mm\n";
+        text.text += $"Y: {relativeVector.y*1000,10:######0.000}mm\n";
+        text.text += $"Z: {relativeVector.z*1000,10:######0.000}mm\n";
     }
 }

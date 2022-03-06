@@ -49,6 +49,7 @@ jobs:
           allowDirtyBuild: true
           targetPlatform: ${{ matrix.targetPlatform }}
           buildName: ${{ env.project_name }}-${{ matrix.name }}
+          buildMethod: UnityBuilderAction.Builder.BuildProject
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:

@@ -21,7 +21,7 @@ public class MeshServiceProvider : IServiceProviderBehavior
 
     private void Start()
     {
-        myMesh = new UnityEngine.Mesh();
+        myMesh = new Mesh();
         targetMesh.mesh = myMesh;
     }
 
@@ -32,19 +32,19 @@ public class MeshServiceProvider : IServiceProviderBehavior
             myMesh.Clear();
             // log request.Faces
             Proto.Messages.Mesh mesh = meshStamped.Mesh;
-            Debug.Log(mesh.Faces);
-            Debug.Log(mesh.Vertices);
+            // Debug.Log(mesh.Faces);
+            // Debug.Log(mesh.Vertices);
 
-            UnityEngine.Vector3[] vertices = new UnityEngine.Vector3[mesh.Vertices.Count / 3];
+            Vector3[] vertices = new Vector3[mesh.Vertices.Count / 3];
             for (int i = 0; i < mesh.Vertices.Count; i += 3)
             {
-                vertices[i / 3] = new UnityEngine.Vector3(mesh.Vertices[i], mesh.Vertices[i + 1], mesh.Vertices[i + 2]);
+                vertices[i / 3] = new Vector3(mesh.Vertices[i], mesh.Vertices[i + 1], mesh.Vertices[i + 2]);
             }
 
             myMesh.vertices = vertices;
             myMesh.triangles = mesh.Faces.ToArray();
             myMesh.RecalculateNormals();
-            mesh = null;
+            meshStamped = null;
         }
     }
     
@@ -62,7 +62,7 @@ public class MeshServiceProvider : IServiceProviderBehavior
                 _parent.meshStamped = request;
         
                 Debug.Log("Mesh received");
-            }  catch (System.Exception e)
+            }  catch (Exception e)
             {
                 Debug.LogError(e);
             }

@@ -23,7 +23,7 @@ public class USImageServiceProvider : IServiceProviderBehavior
     private bool flag;
     private static readonly int MainTex = Shader.PropertyToID("_MainTex");
     private Texture2D texture;
-    private string temporaryCachePath;
+    private string temporaryCachePath = "";
 
     private int lastUsed = 0;
 
@@ -36,10 +36,12 @@ public class USImageServiceProvider : IServiceProviderBehavior
     void Start()
     {
         temporaryCachePath = Application.temporaryCachePath;
+        Debug.Log("Temporary cache path: " + temporaryCachePath);
     }
 
     IEnumerator GetText()
     {
+        if (temporaryCachePath == "") yield break;
         var path = "file://"+temporaryCachePath + "/image"+lastUsed+".png";
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(path))
@@ -95,6 +97,8 @@ public class USImageServiceProvider : IServiceProviderBehavior
                 ByteString byteString = request.Image.Data; // to texture
                 _parent.lastPose = request.Pose;
                 // save to file in Application.temporaryCachePath/image.png
+                
+                if (_parent.temporaryCachePath == "") return Task.FromResult(new Empty());
                 var path = _parent.temporaryCachePath + "/image"+newWritten+".png";
                 File.WriteAllBytes(path, byteString.ToByteArray());
                 _parent.lastUsed = newWritten;

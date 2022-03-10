@@ -5816,6 +5816,8 @@ MonoBehaviour:
   maxLerpK: 0
   moveLerpTimeK: 1
   twoHandSmoothK: 0.1
+  relativeDragCoef: 0.5
+  rateControl: 0
   snapDeadzone: 0.05
   snapSigFigs: -2
   lerpTimeLookups:
@@ -7520,18 +7522,18 @@ PrefabInstance:
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3317880174979194217}
+      objectReference: {fileID: 1060225929}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: set_RateControl
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SnapAdjustController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.size
@@ -7552,14 +7554,14 @@ PrefabInstance:
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3317880174979194217}
+      objectReference: {fileID: 1060225929}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: set_RateControl
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7567,7 +7569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SnapAdjustController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -8704,7 +8706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444140681364337695, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_text
-      value: Toggle Mock Patch Visibility
+      value: Toggle Rate vs. Relative Input
       objectReference: {fileID: 0}
     - target: {fileID: 6444140681364337695, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_textAlignment

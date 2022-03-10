@@ -23,6 +23,9 @@ public class SnapAdjustController : MonoBehaviour
     public float maxLerpK = 0f;
     public float moveLerpTimeK = 0.5f;
     public float twoHandSmoothK = 0.5f;
+    public float relativeDragCoef = 0.5f;
+    
+    public bool rateControl = false;
 
     public float snapDeadzone = 0.05f;
 
@@ -62,6 +65,7 @@ public class SnapAdjustController : MonoBehaviour
     public UnityEvent OnInteractionStarted = new UnityEvent();
     public UnityEvent OnInteractionEnded = new UnityEvent();
     public UnityEvent OnValueUpdated = new UnityEvent();
+    private Vector3 startLocation;
 
 
     // Start is called before the first frame update
@@ -147,7 +151,15 @@ public class SnapAdjustController : MonoBehaviour
 
         if (greatestNumberOfHands == 1)
         {
-            Vector3 dragVector = transform.position - continuousPosition;
+            Vector3 dragVector = transform.position;
+            if (rateControl)
+            {
+                dragVector -= continuousPosition;
+            }
+            else
+            {
+                dragVector -= startLocation;
+            }
             float distance = dragVector.magnitude;
             if (distance > snapDeadzone && snapManipulationAxis == Vector3.zero)
             {
@@ -215,8 +227,15 @@ public class SnapAdjustController : MonoBehaviour
                 Vector3 goal = continuousPosition + dragVectorAligned;
                 // continuousPosition = defaultTransformSmoothingLogic.SmoothPosition(continuousPosition, goal, lerpTime, Time.deltaTime);
                 velocity = Vector3.zero;
-                
-                continuousPosition = Vector3.SmoothDamp(continuousPosition, goal, ref velocity, lerpTime);
+
+                if (rateControl)
+                {
+                    continuousPosition = Vector3.SmoothDamp(continuousPosition, goal, ref velocity, lerpTime);
+                }
+                else
+                {
+                    continuousPosition = startLocation + dragVectorAligned * roundToNearest * 100 * relativeDragCoef;
+                }
 
                 Vector3 localPosition = continuousPosition - snapAdjustOrigin.position;
                 
@@ -245,6 +264,7 @@ public class SnapAdjustController : MonoBehaviour
         mixedRealityPointer = data.Pointer;
 
         continuousPosition = snapAdjustTarget.position;
+        startLocation = continuousPosition;
         
         OnInteractionStarted?.Invoke();
     }

@@ -25,6 +25,11 @@ public class SnapAdjustController : MonoBehaviour
     public float twoHandSmoothK = 0.5f;
     public float relativeDragCoef = 0.5f;
     
+    public bool RateControl
+    {
+        get => rateControl;
+        set => rateControl = value; 
+    }
     public bool rateControl = false;
 
     public float snapDeadzone = 0.05f;

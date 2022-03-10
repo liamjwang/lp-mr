@@ -5764,6 +5764,7 @@ GameObject:
   - component: {fileID: 1060225931}
   - component: {fileID: 1060225930}
   - component: {fileID: 1060225929}
+  - component: {fileID: 1060225928}
   m_Layer: 0
   m_Name: GrabCube
   m_TagString: Untagged
@@ -5771,6 +5772,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1060225928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060225927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88225235bb04fe7800c83be50fdde8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionStartSound: {fileID: 8300000, guid: 6c0efce9e4f4243449555af66e975f27, type: 3}
+  interactionEndSound: {fileID: 8300000, guid: 32c013149113ba24cb267e1e3f6725c7, type: 3}
+  playTickSounds: 1
+  passNotchSound: {fileID: 8300000, guid: 0632575a55cf09349a999a10968f6395, type: 3}
+  startPitch: 1.25
+  endPitch: 1.25
+  minSecondsBetweenTicks: 0.05
 --- !u!114 &1060225929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5806,6 +5826,15 @@ MonoBehaviour:
   yAxisIndicator: {fileID: 1286910316}
   zAxisIndicator: {fileID: 1734207831}
   continuousPosition: {x: 0, y: 0, z: 0}
+  OnInteractionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractionEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnValueUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1060225930
 MonoBehaviour:
   m_ObjectHideFlags: 0

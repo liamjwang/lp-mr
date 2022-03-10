@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using ManipulationEventData = Microsoft.MixedReality.OpenXR.ManipulationEventData;
 
 public class SnapAdjustController : MonoBehaviour
@@ -57,6 +59,10 @@ public class SnapAdjustController : MonoBehaviour
 
     private int greatestNumberOfHands = 0;
 
+    public UnityEvent OnInteractionStarted = new UnityEvent();
+    public UnityEvent OnInteractionEnded = new UnityEvent();
+    public UnityEvent OnValueUpdated = new UnityEvent();
+
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +100,10 @@ public class SnapAdjustController : MonoBehaviour
             xAxisIndicator.SetActive(false);
             yAxisIndicator.SetActive(false);
             zAxisIndicator.SetActive(false);
+        }
+        else
+        {
+            OnValueUpdated.Invoke();
         }
 
         if (oneHandManip && greatestNumberOfHands < 1)
@@ -235,6 +245,8 @@ public class SnapAdjustController : MonoBehaviour
         mixedRealityPointer = data.Pointer;
 
         continuousPosition = snapAdjustTarget.position;
+        
+        OnInteractionStarted?.Invoke();
     }
 
     public void ManipulationEnd(Microsoft.MixedReality.Toolkit.UI.ManipulationEventData data)
@@ -249,5 +261,7 @@ public class SnapAdjustController : MonoBehaviour
 
         greatestNumberOfHands = 0;
         velocity = Vector3.zero;
+        
+        OnInteractionEnded?.Invoke();
     }
 }

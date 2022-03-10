@@ -30,7 +30,7 @@ public class SnapAdjustController : MonoBehaviour
     
     public List<LerpTimeLookup> lerpTimeLookups = new List<LerpTimeLookup>();
     
-    [System.Serializable]
+    [Serializable]
     public struct LerpTimeLookup
     {
         public int sigFigs;

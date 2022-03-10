@@ -22,10 +22,10 @@ public class SnapAdjustSounds : MonoBehaviour
     private AudioClip passNotchSound = null;
 
     [SerializeField]
-    private float startPitch = 0.75f;
+    private float highPitch = 1.25f;
 
     [SerializeField]
-    private float endPitch = 1.25f;
+    private float lowPitch = 0.75f;
 
     [SerializeField]
     private float minSecondsBetweenTicks = 0.01f;
@@ -43,6 +43,17 @@ public class SnapAdjustSounds : MonoBehaviour
     #endregion
     
     private Vector3 lastPosition;
+
+    public float minSpeed = 0f;
+    public float maxSpeed = 1f;
+    
+    [Range(0, 1)]
+    public float volume = 1f;
+
+    [Range(0, 1)]
+    public float slowVolume = 1f;
+    [Range(0, 1)]
+    public float fastVolume = 0f;
 
     private void Start()
     {
@@ -69,11 +80,13 @@ public class SnapAdjustSounds : MonoBehaviour
             var now = Time.timeSinceLevelLoad;
             if (change.magnitude > 0f && now - lastSoundPlayTime > minSecondsBetweenTicks)
             {
-                passNotchAudioSource.pitch = startPitch;
-                // Mathf.Lerp(startPitch, endPitch, eventData.NewValue);
+                float snapAmnt = Mathf.Pow(10, slider.snapSigFigs);
+                float speedT = Mathf.InverseLerp(minSpeed, maxSpeed, change.magnitude/snapAmnt/(now - lastSoundPlayTime));
+                passNotchAudioSource.pitch = Mathf.Lerp(lowPitch, highPitch, speedT);
+                float volumeCoef = Mathf.Lerp(slowVolume, fastVolume, speedT);
                 if (passNotchAudioSource.isActiveAndEnabled)
                 {
-                    passNotchAudioSource.PlayOneShot(passNotchSound);
+                    passNotchAudioSource.PlayOneShot(passNotchSound, volume*volumeCoef);
                 }
 
                 accumulatedDeltaSliderValue = 0;
@@ -86,7 +99,7 @@ public class SnapAdjustSounds : MonoBehaviour
     {
         if (interactionEndSound != null && grabReleaseAudioSource != null && grabReleaseAudioSource.isActiveAndEnabled)
         {
-            grabReleaseAudioSource.PlayOneShot(interactionEndSound);
+            grabReleaseAudioSource.PlayOneShot(interactionEndSound, volume);
         }
     }
 
@@ -94,7 +107,7 @@ public class SnapAdjustSounds : MonoBehaviour
     {
         if (interactionStartSound != null && grabReleaseAudioSource != null && grabReleaseAudioSource.isActiveAndEnabled)
         {
-            grabReleaseAudioSource.PlayOneShot(interactionStartSound);
+            grabReleaseAudioSource.PlayOneShot(interactionStartSound, volume);
         }
         lastPosition = slider.snapAdjustTarget.position;
     }

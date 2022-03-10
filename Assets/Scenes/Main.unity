@@ -5788,9 +5788,14 @@ MonoBehaviour:
   interactionEndSound: {fileID: 8300000, guid: 32c013149113ba24cb267e1e3f6725c7, type: 3}
   playTickSounds: 1
   passNotchSound: {fileID: 8300000, guid: 0632575a55cf09349a999a10968f6395, type: 3}
-  startPitch: 1.25
-  endPitch: 1.25
-  minSecondsBetweenTicks: 0.05
+  highPitch: 1.25
+  lowPitch: 1
+  minSecondsBetweenTicks: 0.03
+  minSpeed: 0
+  maxSpeed: 50
+  volume: 1
+  slowVolume: 1
+  fastVolume: 0.126
 --- !u!114 &1060225929
 MonoBehaviour:
   m_ObjectHideFlags: 0

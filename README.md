@@ -12,3 +12,6 @@
 - https://github.com/OpenAvikom/mr-grpc-unity
 - https://github.com/rderbier/Hololens-QRcodeSample
 - https://game.ci/
+
+### Bugs
+- slice rendering requires external window to be visible

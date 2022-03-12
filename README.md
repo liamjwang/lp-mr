@@ -1,9 +1,14 @@
 ﻿# Lumbar Puncture MR
-[![Build players](https://github.com/liamjwang/lp-mr/actions/workflows/main.yml/badge.svg)](https://github.com/liamjwang/lp-mr/actions/workflows/main.yml)
+[![Build linux players](https://github.com/liamjwang/lp-mr/actions/workflows/build-linux.yml/badge.svg)](https://github.com/liamjwang/lp-mr/actions/workflows/build-linux.yml)
+[![Build windows players](https://github.com/liamjwang/lp-mr/actions/workflows/build-windows.yml/badge.svg)](https://github.com/liamjwang/lp-mr/actions/workflows/build-windows.yml)
 
-## CI Setup
-- In unity, must enable "Copy References" in the build settings for appx build to work
 
-## Sources
+## Development
+### CI Setup
+- Assets/Editor/UnityBuilderAction is required for GameCI builds
+  - Enables "Copy References", required for appx build from vs solution build to work
+
+### References
 - https://github.com/OpenAvikom/mr-grpc-unity
 - https://github.com/rderbier/Hololens-QRcodeSample
+- https://game.ci/

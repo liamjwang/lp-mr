@@ -15,7 +15,20 @@ using Pose = Proto.Messages.Pose;
 public class USImageServiceProvider : IServiceProviderBehavior
 {
     
-    public MeshRenderer targetMeshRenderer;
+    // public MeshRenderer TargetMeshRenderer
+    // {
+    //     get => _targetMeshRenderer;
+    //     set
+    //     {
+    //         if (_targetMeshRenderer != value)
+    //         {
+    //             _targetMeshRenderer.material.mainTexture = null;
+    //             _targetMeshRenderer = value;
+    //         }
+    //     }
+    // }
+
+    public MeshRenderer[] targetMeshRenderers;
     public Transform targetTransform;
 
     private Pose lastPose;
@@ -56,7 +69,13 @@ public class USImageServiceProvider : IServiceProviderBehavior
             {
                 // Get downloaded asset bundle
                 var texture = DownloadHandlerTexture.GetContent(uwr);
-                targetMeshRenderer.material.SetTexture(MainTex, texture);
+                foreach (MeshRenderer targetMeshRenderer in targetMeshRenderers)
+                {
+                    if (targetMeshRenderer != null)
+                    {
+                        targetMeshRenderer.material.SetTexture(MainTex, texture);
+                    }
+                }
             }
         }
     }

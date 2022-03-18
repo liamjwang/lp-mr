@@ -6,10 +6,12 @@ Shader "Unlit/USSliceOutline"
         _OutlineWidth ("Outline Width", Range(0, 1)) = 0.1
         _OutlineColor ("Outline Color", Color) = (0.0, 0.0, 0.0, 1.0)
         _USSourceLocation ("US Source Location", Vector) = (0.0, 0.0, 0.0, 0.0)
+        _USLimitLocation ("US Limit Location", Vector) = (0.0, 0.0, 0.0, 0.0)
         _USSourceAngle ("US Source Angle", Float) = 0.0
         _USSourceFOV ("US Source FOV", Float) = 0.0
         _USRadius ("US Radius", Float) = 0.0
         _EdgeWidthCoef ("Edge Width Coef", Float) = 1.2
+        _ShowTexture ("Show Texture", Int) = 1
     }
     SubShader
     {
@@ -50,10 +52,12 @@ Shader "Unlit/USSliceOutline"
             float _OutlineWidth;
             float4 _OutlineColor;
             float4 _USSourceLocation;
+            float4 _USLimitLocation;
             float _USSourceAngle;
             float _USSourceFOV;
             float _USRadius;
             float _EdgeWidthCoef;
+            int _ShowTexture;
 
             v2f vert (appdata v)
             {
@@ -74,11 +78,16 @@ Shader "Unlit/USSliceOutline"
                 // float squareGradient = min(min(1-i.uv.x, i.uv.x), min(1-i.uv.y, i.uv.y));
                 bool outer = abs(atan2(i.uv.y - _USSourceLocation.y, i.uv.x - _USSourceLocation.x)-_USSourceAngle/180*3.14) < _USSourceFOV/180*3.14;
                 bool inner = abs(atan2(i.uv.y - _USSourceLocation.y + _OutlineWidth*_EdgeWidthCoef, i.uv.x - _USSourceLocation.x)-_USSourceAngle/180*3.14) < _USSourceFOV/180*3.14;
-                float circle = distance(i.uv, _USSourceLocation.xy);
-                col = circle < _USRadius && outer && ((!inner) || (circle > _USRadius-_OutlineWidth)) ? _OutlineColor : float4(0, 0, 0, 0);
-                // col = float4(gradient2gradient, 0, 0 ,1);
-                // col = float4(1,1,0,0);
-                // col = i.uv.xxxx;
+                float circle = distance(float2(i.uv.x, i.uv.y*3/4), float2(_USSourceLocation.x, _USSourceLocation.y*3/4));
+                if (_ShowTexture)
+                {
+                    col = circle < _USRadius && outer ? col : float4(0, 0, 0, 0);
+                }
+                else
+                {
+                    col = circle < _USRadius && outer && ((!inner) || (circle > _USRadius-_OutlineWidth)) ? _OutlineColor : float4(0, 0, 0, 0);
+                }
+                
                 // apply fog
                 // UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

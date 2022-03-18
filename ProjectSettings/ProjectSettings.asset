@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: smarts
   productName: snapadjust
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -46,7 +46,7 @@ PlayerSettings:
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
-  m_StereoRenderingPath: 1
+  m_StereoRenderingPath: 2
   m_ActiveColorSpace: 1
   m_MTRendering: 1
   mipStripping: 0
@@ -168,14 +168,15 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 320326045216128462, guid: b9901f57ca6718a4681c0b5c56de31e1, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: 4dfb9ac3ba8cc8f44b3ee3f4caf8644a, type: 2}
-  - {fileID: -1803494634490681055, guid: 813f1b16ca59b4f42b26b896483fe490, type: 2}
-  - {fileID: 5150546152438304653, guid: e93a3c2ca872bb042baabd9588c01523, type: 2}
+  - {fileID: 0}
+  - {fileID: 320326045216128462, guid: b9901f57ca6718a4681c0b5c56de31e1, type: 2}
+  - {fileID: 3421462107431843670, guid: 813f1b16ca59b4f42b26b896483fe490, type: 2}
+  - {fileID: 4311887124619524885, guid: e93a3c2ca872bb042baabd9588c01523, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -746,14 +747,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template3D
+  metroPackageName: snapadjust
   metroPackageVersion: 1.0.2.0
-  metroCertificatePath: Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: DefaultCompany
-  metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 80bbf55d1e4ad901
-  metroApplicationDescription: Template_3D
+  metroCertificateSubject: smarts
+  metroCertificateIssuer: smarts
+  metroCertificateNotAfter: 005d6cb7c259d901
+  metroApplicationDescription: TodoDescriptionGoesHere
   wsaImages: {}
   metroTileShortName: quest-grpc-mrtk
   metroTileShowName: 0

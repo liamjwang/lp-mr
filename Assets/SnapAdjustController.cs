@@ -9,7 +9,7 @@ using Microsoft.MixedReality.Toolkit.Utilities;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-// using ManipulationEventData = Microsoft.MixedReality.OpenXR.ManipulationEventData;
+using ManipulationEventData = Microsoft.MixedReality.OpenXR.ManipulationEventData;
 
 public class SnapAdjustController : MonoBehaviour
 {
@@ -55,7 +55,7 @@ public class SnapAdjustController : MonoBehaviour
     // private float InitialScaleLerpTime;
     // private float InitialRotateLerpTime;
 
-    // private DefaultTransformSmoothingLogic defaultTransformSmoothingLogic = new DefaultTransformSmoothingLogic();
+    private DefaultTransformSmoothingLogic defaultTransformSmoothingLogic = new DefaultTransformSmoothingLogic();
 
     private int greatestNumberOfHands = 0;
 
@@ -240,7 +240,7 @@ public class SnapAdjustController : MonoBehaviour
         }
     }
 
-    public void ManipulationStart(ManipulationEventData data)
+    public void ManipulationStart(Microsoft.MixedReality.Toolkit.UI.ManipulationEventData data)
     {
         mixedRealityPointer = data.Pointer;
 
@@ -249,7 +249,7 @@ public class SnapAdjustController : MonoBehaviour
         OnInteractionStarted?.Invoke();
     }
 
-    public void ManipulationEnd(ManipulationEventData data)
+    public void ManipulationEnd(Microsoft.MixedReality.Toolkit.UI.ManipulationEventData data)
     {
         mixedRealityPointer = null;
 

@@ -5,7 +5,7 @@ using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEditor;
 using UnityEngine;
-// using ManipulationEventData = Microsoft.MixedReality.OpenXR.ManipulationEventData;
+using ManipulationEventData = Microsoft.MixedReality.OpenXR.ManipulationEventData;
 
 public static class Hmmm
 {

@@ -15,11 +15,12 @@ Shader "Unlit/USSliceOutline"
     }
     SubShader
     {
-        Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+        Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
         LOD 100
         Cull Off
-        ZWrite Off
+//        ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha 
+        Lighting Off
 
         Pass
         {
@@ -90,6 +91,7 @@ Shader "Unlit/USSliceOutline"
                 
                 // apply fog
                 // UNITY_APPLY_FOG(i.fogCoord, col);
+                clip(col.a-0.5);
                 return col;
             }
             ENDCG

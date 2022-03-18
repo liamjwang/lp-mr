@@ -73,6 +73,7 @@ public class USImageServiceProvider : IServiceProviderBehavior
                 {
                     if (targetMeshRenderer != null)
                     {
+                        Destroy(targetMeshRenderer.material.GetTexture(MainTex));
                         targetMeshRenderer.material.SetTexture(MainTex, texture);
                     }
                 }

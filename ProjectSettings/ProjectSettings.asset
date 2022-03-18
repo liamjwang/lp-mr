@@ -46,7 +46,7 @@ PlayerSettings:
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
-  m_StereoRenderingPath: 1
+  m_StereoRenderingPath: 2
   m_ActiveColorSpace: 1
   m_MTRendering: 1
   mipStripping: 0
@@ -171,11 +171,12 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 320326045216128462, guid: b9901f57ca6718a4681c0b5c56de31e1, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: 4dfb9ac3ba8cc8f44b3ee3f4caf8644a, type: 2}
-  - {fileID: -1803494634490681055, guid: 813f1b16ca59b4f42b26b896483fe490, type: 2}
-  - {fileID: 5150546152438304653, guid: e93a3c2ca872bb042baabd9588c01523, type: 2}
+  - {fileID: 0}
+  - {fileID: 320326045216128462, guid: b9901f57ca6718a4681c0b5c56de31e1, type: 2}
+  - {fileID: 3421462107431843670, guid: 813f1b16ca59b4f42b26b896483fe490, type: 2}
+  - {fileID: 4311887124619524885, guid: e93a3c2ca872bb042baabd9588c01523, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -725,7 +726,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: OCULUSINTEGRATION_PRESENT
     7: OCULUSINTEGRATION_PRESENT
-    14: master
+    14: release
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -747,7 +748,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: lpmr
-  metroPackageVersion: 1.0.2.0
+  metroPackageVersion: 1.0.6.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: smarts

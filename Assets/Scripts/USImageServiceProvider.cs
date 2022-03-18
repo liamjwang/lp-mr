@@ -68,12 +68,15 @@ public class USImageServiceProvider : IServiceProviderBehavior
             else
             {
                 // Get downloaded asset bundle
-                var texture = DownloadHandlerTexture.GetContent(uwr);
+                if (texture != null)
+                {
+                    Destroy(texture);
+                }
+                texture = DownloadHandlerTexture.GetContent(uwr);
                 foreach (MeshRenderer targetMeshRenderer in targetMeshRenderers)
                 {
                     if (targetMeshRenderer != null)
                     {
-                        Destroy(targetMeshRenderer.material.GetTexture(MainTex));
                         targetMeshRenderer.material.SetTexture(MainTex, texture);
                     }
                 }
@@ -112,7 +115,7 @@ public class USImageServiceProvider : IServiceProviderBehavior
         {
             try
             {
-                int newWritten = (_parent.lastUsed + 1) % 4;
+                int newWritten = (_parent.lastUsed + 1) % 16;
                 
                 ByteString byteString = request.Image.Data; // to texture
                 _parent.lastPose = request.Pose;

@@ -2,7 +2,9 @@ Shader "Unlit/USSliceOutline"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex ("Texture", 2D) = "black" {}
+        _SecondaryTex ("Secondary Texture", 2D) = "black" {}
+        _BlendT ("Blend Amount", Float) = 1.0
         _OutlineWidth ("Outline Width", Range(0, 1)) = 0.1
         _OutlineColor ("Outline Color", Color) = (0.0, 0.0, 0.0, 1.0)
         _USSourceLocation ("US Source Location", Vector) = (0.0, 0.0, 0.0, 0.0)
@@ -49,6 +51,8 @@ Shader "Unlit/USSliceOutline"
             };
 
             sampler2D _MainTex;
+            sampler2D _SecondaryTex;
+            float _BlendT;
             float4 _MainTex_ST;
             float _OutlineWidth;
             float4 _OutlineColor;
@@ -75,13 +79,16 @@ Shader "Unlit/USSliceOutline"
             float4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                float4 col = tex2D(_MainTex, i.uv);
+                float4 col;
                 // float squareGradient = min(min(1-i.uv.x, i.uv.x), min(1-i.uv.y, i.uv.y));
                 bool outer = abs(atan2(i.uv.y - _USSourceLocation.y, i.uv.x - _USSourceLocation.x)-_USSourceAngle/180*3.14) < _USSourceFOV/180*3.14;
                 bool inner = abs(atan2(i.uv.y - _USSourceLocation.y + _OutlineWidth*_EdgeWidthCoef, i.uv.x - _USSourceLocation.x)-_USSourceAngle/180*3.14) < _USSourceFOV/180*3.14;
                 float circle = distance(float2(i.uv.x, i.uv.y*3/4), float2(_USSourceLocation.x, _USSourceLocation.y*3/4));
                 if (_ShowTexture)
                 {
+                    fixed4 col1 = tex2D(_MainTex, i.uv);
+                    fixed4 col2 = tex2D(_SecondaryTex, i.uv);
+                    col = lerp(col2, col1, clamp(_BlendT, 0.0, 1.0));
                     col = circle < _USRadius && outer ? col : float4(0, 0, 0, 0);
                 }
                 else

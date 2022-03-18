@@ -36,9 +36,13 @@ public class USImageServiceProvider : IServiceProviderBehavior
     private bool flag;
     private static readonly int MainTex = Shader.PropertyToID("_MainTex");
     private Texture2D texture;
+    private Texture2D prevTexture;
     private string temporaryCachePath = "";
 
     private int lastUsed = 0;
+    private static readonly int SecondaryTex = Shader.PropertyToID("_SecondaryTex");
+    private static readonly int BlendT = Shader.PropertyToID("_BlendT");
+    public float blendRate;
 
 
     public override ServerServiceDefinition getServiceDefinition()
@@ -68,18 +72,32 @@ public class USImageServiceProvider : IServiceProviderBehavior
             else
             {
                 // Get downloaded asset bundle
-                if (texture != null)
+                if (prevTexture != null)
                 {
-                    Destroy(texture);
+                    Destroy(prevTexture);
                 }
+                prevTexture = texture;
                 texture = DownloadHandlerTexture.GetContent(uwr);
                 foreach (MeshRenderer targetMeshRenderer in targetMeshRenderers)
                 {
                     if (targetMeshRenderer != null)
                     {
                         targetMeshRenderer.material.SetTexture(MainTex, texture);
+                        targetMeshRenderer.material.SetTexture(SecondaryTex, prevTexture);
+                        targetMeshRenderer.material.SetFloat(BlendT, 0f);
                     }
                 }
+            }
+        }
+    }
+
+    private void Update()
+    {
+        foreach (MeshRenderer targetMeshRenderer in targetMeshRenderers)
+        {
+            if (targetMeshRenderer != null)
+            {
+                targetMeshRenderer.material.SetFloat(BlendT, targetMeshRenderer.material.GetFloat(BlendT) + blendRate*Time.deltaTime);
             }
         }
     }

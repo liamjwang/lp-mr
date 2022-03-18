@@ -3,6 +3,8 @@ Shader "Unlit/USImage"
     Properties
     {
         _MainTex ("Texture", 2D) = "black" {}
+        _SecondaryTex ("Secondary Texture", 2D) = "black" {}
+        _BlendT ("Blend Amount", Float) = 1.0
     }
     SubShader
     {
@@ -36,7 +38,9 @@ Shader "Unlit/USImage"
             };
 
             sampler2D _MainTex;
+            sampler2D _SecondaryTex;
             float4 _MainTex_ST;
+            float _BlendT;
 
             v2f vert (appdata v)
             {
@@ -53,7 +57,10 @@ Shader "Unlit/USImage"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col1 = tex2D(_MainTex, i.uv);
+                fixed4 col2 = tex2D(_SecondaryTex, i.uv);
+                fixed4 col = lerp(col2, col1, clamp(_BlendT, 0.0, 1.0));
+
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

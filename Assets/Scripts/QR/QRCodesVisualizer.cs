@@ -11,7 +11,6 @@ namespace QRTracking
     public abstract class SingleQRFollower : MonoBehaviour
     {
         public abstract void Follow(QRCode qrCode);
-        public abstract void UpdateLastCameraPose(Vector3 cameraTransform);
     }
     public class QRCodesVisualizer : MonoBehaviour
     {
@@ -48,8 +47,6 @@ namespace QRTracking
         }
 
         private System.Collections.Generic.Queue<ActionData> pendingActions = new Queue<ActionData>();
-        public Transform cameraTransform;
-
         void Awake()
         {
 
@@ -125,10 +122,6 @@ namespace QRTracking
                         {
                             InstantiateQRCode(action);
                         }
-                        else
-                        {
-                            UpdateQRCode(action);
-                        }
                     }
                     else if (action.type == ActionData.Type.Removed)
                     {
@@ -152,23 +145,6 @@ namespace QRTracking
             }
         }
 
-        private void UpdateQRCode(ActionData action)
-        {
-            string qrCodeData = action.qrCode.Data;
-            SingleQRFollower follower = null;
-            foreach (QRPrefab qrFollower in qrFollowers)
-            {
-                if (qrFollower.data == qrCodeData)
-                {
-                    follower = qrFollower.follower;
-                }
-            }
-            if (follower != null)
-            {
-                follower.UpdateLastCameraPose(cameraTransform.position);
-            }
-        }
-
         private void InstantiateQRCode(ActionData action)
         {
             string qrCodeData = action.qrCode.Data;
@@ -188,7 +164,6 @@ namespace QRTracking
             {
                 follower.Follow(qrCodeObject.GetComponent<QRCode>());
             }
-            UpdateQRCode(action);
         }
 
         // Update is called once per frame

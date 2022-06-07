@@ -8,8 +8,6 @@ public class PatchQRFollower : SingleQRFollower
     private QRCode code;
     public GameObject quad;
     public GameObject center;
-    private Vector3 cameraTransform;
-    public float size;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +22,7 @@ public class PatchQRFollower : SingleQRFollower
         {
             Transform myTransform = transform;
             Transform qrTransform = code.transform;
-            if (QrSizeCompensation)
-            {
-                myTransform.position = (qrTransform.position - cameraTransform)* (size/code.PhysicalSize) + cameraTransform;
-            }
-            else
-            {
-                myTransform.position = qrTransform.position;
-            }
+            myTransform.position = qrTransform.position;
             myTransform.rotation = qrTransform.rotation;
             
             quad.transform.localPosition = new Vector3(code.PhysicalSize / 2.0f, code.PhysicalSize / 2.0f, 0.0f);
@@ -42,15 +33,8 @@ public class PatchQRFollower : SingleQRFollower
         
     }
 
-    public bool QrSizeCompensation { get; set; } = false;
-
     public override void Follow(QRCode qrCode)
     {
         code = qrCode;
-    }
-
-    public override void UpdateLastCameraPose(Vector3 cameraTransform)
-    {
-        this.cameraTransform = cameraTransform;
     }
 }

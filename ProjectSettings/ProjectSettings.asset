@@ -46,7 +46,7 @@ PlayerSettings:
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
-  m_StereoRenderingPath: 1
+  m_StereoRenderingPath: 2
   m_ActiveColorSpace: 1
   m_MTRendering: 1
   mipStripping: 0
@@ -748,7 +748,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: lpmr
-  metroPackageVersion: 1.0.16.0
+  metroPackageVersion: 1.0.9.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: smarts

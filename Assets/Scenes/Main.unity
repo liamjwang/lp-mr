@@ -1441,7 +1441,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quad: {fileID: 768579443}
   center: {fileID: 1239372981}
-  size: 0.04
 --- !u!4 &226136759
 Transform:
   m_ObjectHideFlags: 0
@@ -5374,8 +5373,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1418537635}
+  m_Children: []
   m_Father: {fileID: 590994482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7257,18 +7255,18 @@ PrefabInstance:
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 226136758}
+      objectReference: {fileID: 3317880174979194217}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_QrSizeCompensation
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PatchQRFollower, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.size
@@ -7289,14 +7287,14 @@ PrefabInstance:
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 226136758}
+      objectReference: {fileID: 3317880174979194217}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_QrSizeCompensation
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7304,7 +7302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PatchQRFollower, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4480280376263658316, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: Events.Array.data[2].Settings.Array.data[0].EventValue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -7831,18 +7829,6 @@ PrefabInstance:
     - target: {fileID: 4610887702772789867, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: sliderValue
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4610887702772789867, guid: f514427e4d7588143a828462e0fc1321, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1871344518}
-    - target: {fileID: 4610887702772789867, guid: f514427e4d7588143a828462e0fc1321, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SliderUpdated
-      objectReference: {fileID: 0}
-    - target: {fileID: 4610887702772789867, guid: f514427e4d7588143a828462e0fc1321, type: 3}
-      propertyPath: OnValueUpdated.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: QRSizeAdjuster, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5692620129258657323, guid: f514427e4d7588143a828462e0fc1321, type: 3}
       propertyPath: m_Enabled
@@ -9223,47 +9209,6 @@ Transform:
   m_Father: {fileID: 2090958990}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1418537634
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1418537635}
-  m_Layer: 0
-  m_Name: QrCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1418537635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418537634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.033, y: 0.04, z: -0.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1032921857}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1483397396 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5842008467329409460, guid: f514427e4d7588143a828462e0fc1321, type: 3}
-  m_PrefabInstance: {fileID: 1267045334}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1511351664
 GameObject:
   m_ObjectHideFlags: 0
@@ -10837,8 +10782,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762270497}
-  m_LocalRotation: {x: -0.70549756, y: -0.2556851, z: -0.2220601, w: 0.62256545}
-  m_LocalPosition: {x: 0.0015000105, y: -0.23628217, z: -0.3486}
+  m_LocalRotation: {x: -0.7467844, y: -0.2704019, z: -0.20388332, w: 0.57238764}
+  m_LocalPosition: {x: 0.0015, y: -0.282, z: -0.3195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2085206392}
@@ -10847,7 +10792,7 @@ Transform:
   - {fileID: 987864533}
   m_Father: {fileID: 312227404}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -97.256, y: 2.2850037, z: -41.85498}
+  m_LocalEulerAnglesHint: {x: -105.168, y: 1.1029968, z: -40.653015}
 --- !u!1 &1766353920
 GameObject:
   m_ObjectHideFlags: 0
@@ -11670,7 +11615,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4610887702772789861, guid: f514427e4d7588143a828462e0fc1321, type: 3}
   m_PrefabInstance: {fileID: 1267045334}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1871344518
+--- !u!114 &1871344521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11679,14 +11624,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871344517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f44b2eefc3432884f50c2a6dd682ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 2683f108908972141920d792eb45b5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
-  qrCode: {fileID: 226136758}
-  label: {fileID: 1483397396}
-  minSize: 0.02
-  maxSize: 0.04
+  sliderSounds: {fileID: 0}
+  numSnapPoints: 2
 --- !u!1 &1876032739
 GameObject:
   m_ObjectHideFlags: 0
@@ -12776,10 +12719,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7057500431822358134, guid: 1fde1d99b2db8db46aff8460de98310c, type: 3}
     - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 1032921857}
-    - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
       propertyPath: defaultQrPrefab
       value: 
       objectReference: {fileID: 7057500431822358134, guid: 1fde1d99b2db8db46aff8460de98310c, type: 3}
@@ -12798,10 +12737,6 @@ PrefabInstance:
     - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
       propertyPath: qrFollowers.Array.data[0].data
       value: patch
-      objectReference: {fileID: 0}
-    - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
-      propertyPath: qrFollowers.Array.data[0].size
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
       propertyPath: qrPrefabs.Array.data[0].prefab

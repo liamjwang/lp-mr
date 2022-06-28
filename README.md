@@ -15,3 +15,9 @@
 
 ### Bugs
 - slice rendering requires external window to be visible
+
+### Notes
+- https://github.com/microsoft/MixedRealityToolkit-Unity/issues/10449#issuecomment-1111163353\
+- MRTK/Standard shader error
+  - delete: fixed facing:VFACE in line 775
+    and *facing in line 956,959

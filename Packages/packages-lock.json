@@ -52,7 +52,7 @@
       }
     },
     "com.unity.collab-proxy": {
-      "version": "1.15.17",
+      "version": "1.17.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {

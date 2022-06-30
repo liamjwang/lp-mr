@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 #if WINDOWS_UWP
 using Windows.Storage;
@@ -9,23 +10,23 @@ using Windows.Storage;
 
 public class ConnectIP : MonoBehaviour
 { 
-    ZMQConnection ros;
+    ZMQConnection connection;
 
     // ROS Connector
-    [SerializeField]
-    string rosIP;
-    public string ROSIP{ get => rosIP; set => rosIP = value; }
+    [FormerlySerializedAs("rosIP")] [SerializeField]
+    string ip;
+    public string IP{ get => ip; set => ip = value; }
     public bool connectOnStart = true;
 
     private void Awake()
     {
-        ros = GetComponent<ZMQConnection>();
+        connection = GetComponent<ZMQConnection>();
     }
 
     
     void Start()
     {
-        rosIP = ros.RosIPAddress;
+        ip = connection.IPAddress;
 #if WINDOWS_UWP
         // Get IP address from localSettings
         var localSettings = ApplicationData.Current.LocalSettings;
@@ -35,15 +36,15 @@ public class ConnectIP : MonoBehaviour
 #endif
         if (connectOnStart)
         {
-            ros.Connect(rosIP, ros.RosPort);
+            connection.Connect(ip, connection.Port);
         }
     }
 
     public void Connect(string inputIP)
     {
-        rosIP = inputIP; 
-        ros.Disconnect();
-        ros.Connect(rosIP, ros.RosPort);
+        ip = inputIP; 
+        connection.Disconnect();
+        connection.Connect(ip, connection.Port);
 
 #if WINDOWS_UWP
         // Save IP address to localSettings

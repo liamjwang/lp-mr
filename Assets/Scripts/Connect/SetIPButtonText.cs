@@ -20,7 +20,7 @@ public class SetIPButtonText : MonoBehaviour
     void Start()
     {
         buttonText = GetComponent<ButtonConfigHelper>();
-        buttonText.MainLabelText = ros.RosIPAddress;
+        buttonText.MainLabelText = ros.IPAddress;
         checkedOnce = false;
     }
 
@@ -46,12 +46,12 @@ public class SetIPButtonText : MonoBehaviour
 
     public void ConnectFail()
     {
-        buttonText.MainLabelText = string.Format("<color=red>{0}</color>", ros.RosIPAddress);
+        buttonText.MainLabelText = string.Format("<color=red>{0}</color>", ros.IPAddress);
     }
 
     public void ConnectSuccess()
     {
-        buttonText.MainLabelText = string.Format("<color=green>{0}</color>", ros.RosIPAddress);
+        buttonText.MainLabelText = string.Format("<color=green>{0}</color>", ros.IPAddress);
     }
 }
 

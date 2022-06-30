@@ -23,8 +23,8 @@ public class NumberPadInput : MonoBehaviour
     void Start()
     {
         inputField = GetComponent<TextMeshPro>();
-        inputField.text = ros.RosIPAddress;
-        ipAddress = ros.RosIPAddress; 
+        inputField.text = ros.IPAddress;
+        ipAddress = ros.IPAddress; 
     }
 
     // Update the text field
@@ -65,7 +65,7 @@ public class NumberPadInput : MonoBehaviour
     {
         if (ipAddress.Length == 0)
         {
-            ipAddress = ros.RosIPAddress;
+            ipAddress = ros.IPAddress;
         }
         connectIP.Connect(ipAddress);
         setIPButtonText.CheckConnectionStatus(); 

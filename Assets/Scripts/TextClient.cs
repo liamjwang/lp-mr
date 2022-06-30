@@ -2,8 +2,10 @@
 using NetMQ;
 using NetMQ.Sockets;
 using System.Collections.Generic;
+using System.IO;
 using AsyncIO;
-using UnityEngine.UI;
+using Capnp;
+using Vector3 = CapnpGen.Vector3;
 
 public class TextClient : MonoBehaviour
 {
@@ -34,8 +36,17 @@ public class TextClient : MonoBehaviour
         {
             byte[] topic = msg[0]; // first frame is the topic
             byte[] contents = msg[1]; // second frame is the contents
-            
-            Debug.Log("Received message: " + System.Text.Encoding.UTF8.GetString(contents));
+
+            // TODO: Use this: https://capnproto.github.io/pycapnp/quickstart.html#byte-segments
+
+            MemoryStream memoryStream = new MemoryStream(contents);
+            WireFrame readSegments = Framing.ReadSegments(memoryStream);
+            var deserializer = DeserializerState.CreateRoot(readSegments);
+            var reader = new CapnpGen.Vector3.READER(deserializer);
+            Vector3 asdf = new CapnpGen.Vector3();
+
+
+            Debug.Log($"Decoded: {reader.X} {reader.Y} {reader.Z}");
         }
     }
 

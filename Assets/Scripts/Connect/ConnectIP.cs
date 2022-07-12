@@ -31,7 +31,7 @@ public class ConnectIP : MonoBehaviour
         // Get IP address from localSettings
         var localSettings = ApplicationData.Current.LocalSettings;
         if(localSettings.Values["IP"] != null){
-            rosIP = localSettings.Values["IP"].ToString();
+            ip = localSettings.Values["IP"].ToString();
         }
 #endif
         if (connectOnStart)
@@ -49,7 +49,7 @@ public class ConnectIP : MonoBehaviour
 #if WINDOWS_UWP
         // Save IP address to localSettings
         var localSettings = ApplicationData.Current.LocalSettings;
-        localSettings.Values["IP"] = rosIP;   
+        localSettings.Values["IP"] = ip;   
 #endif
     }
 }

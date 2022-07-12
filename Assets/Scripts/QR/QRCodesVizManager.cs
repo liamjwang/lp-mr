@@ -1,31 +1,16 @@
 ﻿using System;
-using System.Collections;
-
 using System.Collections.Generic;
 
 using UnityEngine;
 
-using Microsoft.MixedReality.QR;
 namespace QRTracking
 {
-    public abstract class SingleQRFollower : MonoBehaviour
+    public class QRCodesVisualizer : Singleton<QRCodesVisualizer>
     {
-        public abstract void Follow(QRCode qrCode);
-    }
-    public class QRCodesVisualizer : MonoBehaviour
-    {
-        public GameObject defaultQrPrefab;
-        public GameObject silentQrPrefab;
-        public List<QRPrefab> qrFollowers;
-        
-        [Serializable]
-        public struct QRPrefab
-        {
-            public string data;
-            public SingleQRFollower follower;
-        }
+        public GameObject qrPrefab;
 
-        private System.Collections.Generic.SortedDictionary<System.Guid, GameObject> qrCodesObjectsList;
+        private SortedDictionary<string, GameObject> qrCodesObjectsList;
+        
         private bool clearExisting = false;
 
         struct ActionData
@@ -46,7 +31,7 @@ namespace QRTracking
             }
         }
 
-        private System.Collections.Generic.Queue<ActionData> pendingActions = new Queue<ActionData>();
+        private Queue<ActionData> pendingActions = new Queue<ActionData>();
         void Awake()
         {
 
@@ -56,15 +41,15 @@ namespace QRTracking
         void Start()
         {
             Debug.Log("QRCodesVisualizer start");
-            qrCodesObjectsList = new SortedDictionary<System.Guid, GameObject>();
+            qrCodesObjectsList = new SortedDictionary<string, GameObject>();
 
             QRCodesManager.Instance.QRCodesTrackingStateChanged += Instance_QRCodesTrackingStateChanged;
             QRCodesManager.Instance.QRCodeAdded += Instance_QRCodeAdded;
             QRCodesManager.Instance.QRCodeUpdated += Instance_QRCodeUpdated;
             QRCodesManager.Instance.QRCodeRemoved += Instance_QRCodeRemoved;
-            if (defaultQrPrefab == null)
+            if (qrPrefab == null)
             {
-                throw new System.Exception("Prefab not assigned");
+                throw new Exception("Prefab not assigned");
             }
         }
         private void Instance_QRCodesTrackingStateChanged(object sender, bool status)
@@ -118,18 +103,18 @@ namespace QRTracking
                     }
                     else if (action.type == ActionData.Type.Updated)
                     {
-                        if (!qrCodesObjectsList.ContainsKey(action.qrCode.Id))
+                        if (!qrCodesObjectsList.ContainsKey(action.qrCode.Data))
                         {
                             InstantiateQRCode(action);
                         }
                     }
                     else if (action.type == ActionData.Type.Removed)
                     {
-                        if (qrCodesObjectsList.ContainsKey(action.qrCode.Id))
-                        {
-                            Destroy(qrCodesObjectsList[action.qrCode.Id]);
-                            qrCodesObjectsList.Remove(action.qrCode.Id);
-                        }
+                        // if (qrCodesObjectsList.ContainsKey(action.qrCode.Id))
+                        // {
+                        //     Destroy(qrCodesObjectsList[action.qrCode.Id]);
+                        //     qrCodesObjectsList.Remove(action.qrCode.Id);
+                        // }
                     }
                 }
             }
@@ -147,23 +132,33 @@ namespace QRTracking
 
         private void InstantiateQRCode(ActionData action)
         {
-            string qrCodeData = action.qrCode.Data;
-            SingleQRFollower follower = null;
-            foreach (QRPrefab qrFollower in qrFollowers)
+            GameObject qrCodeObject = GetOrCreateQrObject(action.qrCode.Data);
+            qrCodeObject.GetOrAddComponent<SpatialGraphCoordinateSystem>().Id = action.qrCode.SpatialGraphNodeId;
+            qrCodeObject.GetOrAddComponent<QRCodeDisplay>().qrCode = action.qrCode;
+        }
+
+        public QRCodeDisplay GetQRCode(string data)
+        {
+            GameObject qrCodeObject = GetOrCreateQrObject(data);
+            return qrCodeObject.GetOrAddComponent<QRCodeDisplay>();
+        }
+
+        private GameObject GetOrCreateQrObject(string data)
+        {
+            GameObject qrCodeObject;
+            if (qrCodesObjectsList.ContainsKey(data))
             {
-                if (qrFollower.data == qrCodeData)
-                {
-                    follower = qrFollower.follower;
-                }
+                qrCodeObject = qrCodesObjectsList[data];
             }
-            GameObject qrCodeObject = Instantiate(follower == null ? defaultQrPrefab : silentQrPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            qrCodeObject.GetComponent<SpatialGraphCoordinateSystem>().Id = action.qrCode.SpatialGraphNodeId;
-            qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
-            qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
-            if (follower != null)
+            else
             {
-                follower.Follow(qrCodeObject.GetComponent<QRCode>());
+                qrCodeObject = Instantiate(qrPrefab);
+                qrCodesObjectsList.Add(data, qrCodeObject);
             }
+
+            qrCodeObject.GetOrAddComponent<SpatialGraphCoordinateSystem>();
+            qrCodeObject.GetOrAddComponent<QRCodeDisplay>();
+            return qrCodeObject;
         }
 
         // Update is called once per frame

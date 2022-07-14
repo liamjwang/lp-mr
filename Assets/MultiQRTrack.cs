@@ -24,7 +24,7 @@ public class MultiQRTrack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         List<Pose> desiredPoses = new List<Pose>();
         
@@ -51,15 +51,21 @@ public class MultiQRTrack : MonoBehaviour
         
         
         Quaternion averageQuat = Quaternion.identity ;
-        
-        float averageWeight = 1f / qList.Count ;
- 
-        for ( int i = 0; i < qList.Count; i ++ )
+
+        if (qList.Count == 1)
         {
-            Quaternion q = qList [ i ] ;
+            averageQuat = qList[0];
+        }
+        else
+        {
+            float averageWeight = 1f / qList.Count ;
  
-            // based on [URL='https://forum.unity.com/members/lordofduct.66428/']lordofduct[/URL] response
-            averageQuat *= Quaternion.Slerp ( Quaternion.identity, q, averageWeight ) ;
+            for ( int i = 0; i < qList.Count; i ++ )
+            {
+                Quaternion q = qList [ i ] ;
+ 
+                averageQuat *= Quaternion.Slerp ( Quaternion.identity, q, averageWeight ) ;
+            }
         }
         
         Vector3 averagePos = Vector3.zero ;
@@ -71,7 +77,7 @@ public class MultiQRTrack : MonoBehaviour
         averagePos /= vList.Count;
         
         
-        transform.SetPose(new Pose(averagePos, averageQuat), Space.World);
+        transform.SetPose(desiredPoses[0], Space.World);
     }
     
 

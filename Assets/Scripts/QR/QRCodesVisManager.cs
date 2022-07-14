@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace QRTracking
 {
-    public class QRCodesVisualizer : Singleton<QRCodesVisualizer>
+    public class QRCodesVisManager : Singleton<QRCodesVisManager>
     {
         public GameObject qrPrefab;
 
-        private SortedDictionary<string, GameObject> qrCodesObjectsList;
+        private SortedDictionary<string, GameObject> qrCodesObjectsList = new SortedDictionary<string, GameObject>();
+
         
         private bool clearExisting = false;
 
@@ -41,7 +42,6 @@ namespace QRTracking
         void Start()
         {
             Debug.Log("QRCodesVisualizer start");
-            qrCodesObjectsList = new SortedDictionary<string, GameObject>();
 
             QRCodesManager.Instance.QRCodesTrackingStateChanged += Instance_QRCodesTrackingStateChanged;
             QRCodesManager.Instance.QRCodeAdded += Instance_QRCodeAdded;
@@ -118,16 +118,16 @@ namespace QRTracking
                     }
                 }
             }
-            if (clearExisting)
-            {
-                clearExisting = false;
-                foreach (var obj in qrCodesObjectsList)
-                {
-                    Destroy(obj.Value);
-                }
-                qrCodesObjectsList.Clear();
-
-            }
+            // if (clearExisting)
+            // {
+            //     clearExisting = false;
+            //     foreach (var obj in qrCodesObjectsList)
+            //     {
+            //         Destroy(obj.Value);
+            //     }
+            //     qrCodesObjectsList.Clear();
+            //
+            // }
         }
 
         private void InstantiateQRCode(ActionData action)
@@ -149,11 +149,13 @@ namespace QRTracking
             if (qrCodesObjectsList.ContainsKey(data))
             {
                 qrCodeObject = qrCodesObjectsList[data];
+                Debug.Log("Existing QRVis: data=" + data + " length=" + data.Length);
             }
             else
             {
                 qrCodeObject = Instantiate(qrPrefab);
                 qrCodesObjectsList.Add(data, qrCodeObject);
+                Debug.Log("New QRVis: data=" + data + " length=" + data.Length);
             }
 
             qrCodeObject.GetOrAddComponent<SpatialGraphCoordinateSystem>();

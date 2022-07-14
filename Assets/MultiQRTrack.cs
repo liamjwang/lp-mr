@@ -24,7 +24,7 @@ public class MultiQRTrack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         List<Pose> desiredPoses = new List<Pose>();
         
@@ -32,10 +32,9 @@ public class MultiQRTrack : MonoBehaviour
         {
             Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
             Transform targetQrTransform = qrCorrespondence.targetQR.transform;
-            Pose sourceMatrix = sourceQrTransform.GetPose(Space.World);
+            Pose sourceMatrix = sourceQrTransform.GetPose(Space.Self);
             Pose targetMatrix = targetQrTransform.GetPose(Space.World);
-            Pose rootMatrix = transform.GetPose(Space.World);
-            Pose desiredPose = rootMatrix.Multiply(targetMatrix).Multiply(sourceMatrix.Inverse());
+            Pose desiredPose = sourceMatrix.Inverse().Multiply(targetMatrix);
             desiredPoses.Add(desiredPose);
         }
 

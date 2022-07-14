@@ -11,7 +11,7 @@ using Windows.Perception.Spatial;
 namespace QRTracking
 {
     [RequireComponent(typeof(QRTracking.SpatialGraphCoordinateSystem))]
-    public class QRCodeDisplay : MonoBehaviour
+    public class QRCode : MonoBehaviour
     {
         public Microsoft.MixedReality.QR.QRCode qrCode;
         private GameObject qrCodeCube;

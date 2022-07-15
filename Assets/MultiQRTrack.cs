@@ -34,8 +34,9 @@ public class MultiQRTrack : MonoBehaviour
             Transform targetQrTransform = qrCorrespondence.targetQR.transform;
             Pose sourceMatrix = sourceQrTransform.GetPose(Space.Self);
             Pose targetMatrix = targetQrTransform.GetPose(Space.World);
-            Pose desiredPose = sourceMatrix.Inverse().Multiply(targetMatrix);
-            desiredPoses.Add(desiredPose);
+            // Pose desiredPose = targetMatrix.Multiply(.sourceMatrix.Inverse();
+            // Pose desiredPose = sourceMatrix.Inverse().Multiply(targetMatrix);
+            // desiredPoses.Add(desiredPose);
         }
 
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Oculus.Interaction;
 using UnityEngine;
 
 public class MultiQRTrack : MonoBehaviour
@@ -26,27 +25,26 @@ public class MultiQRTrack : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        List<Pose> desiredPoses = new List<Pose>();
+        List<Matrix4x4> desiredPoses = new List<Matrix4x4>();
         
         foreach (QRCorrespondence qrCorrespondence in qrCorrespondences)
         {
             Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
             Transform targetQrTransform = qrCorrespondence.targetQR.transform;
-            Pose sourceMatrix = sourceQrTransform.GetPose(Space.Self);
-            Pose targetMatrix = targetQrTransform.GetPose(Space.World);
-            // Pose desiredPose = targetMatrix.Multiply(.sourceMatrix.Inverse();
-            // Pose desiredPose = sourceMatrix.Inverse().Multiply(targetMatrix);
-            // desiredPoses.Add(desiredPose);
+            Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix(Space.Self);
+            Matrix4x4 targetMatrix = targetQrTransform.GetMatrix(Space.World);
+            Matrix4x4 desiredPose = targetMatrix * sourceMatrix.inverse;
+            desiredPoses.Add(desiredPose);
         }
 
 
         List<Quaternion> qList = new List<Quaternion>();
         List<Vector3> vList = new List<Vector3>();
         
-        foreach (Pose pose in desiredPoses)
+        foreach (Matrix4x4 pose in desiredPoses)
         {
             qList.Add(pose.rotation);
-            vList.Add(pose.position);
+            vList.Add(pose.GetPosition());
         }
         
         
@@ -71,7 +69,7 @@ public class MultiQRTrack : MonoBehaviour
         averagePos /= vList.Count;
         
         
-        transform.SetPose(new Pose(averagePos, averageQuat), Space.World);
+        transform.SetMatrix(Matrix4x4.TRS(averagePos, averageQuat, Vector3.one), Space.World);
     }
     
 
@@ -114,5 +112,33 @@ public static class LPPoseUtils {
     {
         result.position = a.position + a.rotation * b.position;
         result.rotation = a.rotation * b.rotation;
+    }
+    
+    
+    public static Matrix4x4 GetMatrix(this Transform transform, Space space = Space.World)
+    {
+        if (space == Space.World)
+        {
+            return Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+        }
+        else
+        {
+            return Matrix4x4.TRS(transform.localPosition, transform.localRotation, Vector3.one);
+        }
+    }
+    
+        
+    public static void SetMatrix(this Transform transform, Matrix4x4 matrix, Space space = Space.World)
+    {
+        if (space == Space.World)
+        {
+            transform.position = matrix.GetPosition();
+            transform.rotation = matrix.rotation;
+        }
+        else
+        {
+            transform.localPosition = matrix.GetPosition();
+            transform.localRotation = matrix.rotation;
+        }
     }
 }

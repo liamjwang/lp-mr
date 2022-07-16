@@ -734,8 +734,6 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    Android: OCULUSINTEGRATION_PRESENT
-    Standalone: OCULUSINTEGRATION_PRESENT
     Windows Store Apps: release
   additionalCompilerArguments: {}
   platformArchitecture: {}

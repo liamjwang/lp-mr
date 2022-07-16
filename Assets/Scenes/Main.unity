@@ -11973,6 +11973,12 @@ MonoBehaviour:
     sourceQR: {fileID: 608621237}
   - targetQR: {fileID: 430527811}
     sourceQR: {fileID: 89341319}
+  kPosWeight: 1
+  kRotWeight: 1
+  lr: 0.02
+  lrDelta: 0.01
+  lrMin: 0.0001
+  errorDisplay: 0
 --- !u!1 &1743653362
 GameObject:
   m_ObjectHideFlags: 0

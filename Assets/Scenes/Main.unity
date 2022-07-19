@@ -1553,8 +1553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2490dc253fc3305419a49b43bfbb6325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quad: {fileID: 768579443}
-  center: {fileID: 1239372981}
 --- !u!4 &226136759
 Transform:
   m_ObjectHideFlags: 0
@@ -14957,6 +14955,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
+      propertyPath: qrPrefab
+      value: 
+      objectReference: {fileID: 7057500431822358134, guid: 1fde1d99b2db8db46aff8460de98310c, type: 3}
     - target: {fileID: 5635609214456313695, guid: 29420e6cc2d51f644a51c0b18688c5e1, type: 3}
       propertyPath: silentQrPrefab
       value: 

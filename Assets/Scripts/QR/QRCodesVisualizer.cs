@@ -6,25 +6,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Microsoft.MixedReality.QR;
+using UnityEngine.Serialization;
+
 namespace QRTracking
 {
-    public abstract class SingleQRFollower : MonoBehaviour
-    {
-        public abstract void Follow(QRCode qrCode);
-    }
     public class QRCodesVisualizer : MonoBehaviour
     {
-        public GameObject defaultQrPrefab;
-        public GameObject silentQrPrefab;
-        public List<QRPrefab> qrFollowers;
+        [FormerlySerializedAs("defaultQrPrefab")] public GameObject qrPrefab;
         
-        [Serializable]
-        public struct QRPrefab
-        {
-            public string data;
-            public SingleQRFollower follower;
-        }
-
         private System.Collections.Generic.SortedDictionary<System.Guid, GameObject> qrCodesObjectsList;
         private bool clearExisting = false;
 
@@ -62,7 +51,7 @@ namespace QRTracking
             QRCodesManager.Instance.QRCodeAdded += Instance_QRCodeAdded;
             QRCodesManager.Instance.QRCodeUpdated += Instance_QRCodeUpdated;
             QRCodesManager.Instance.QRCodeRemoved += Instance_QRCodeRemoved;
-            if (defaultQrPrefab == null)
+            if (qrPrefab == null)
             {
                 throw new System.Exception("Prefab not assigned");
             }
@@ -148,22 +137,10 @@ namespace QRTracking
         private void InstantiateQRCode(ActionData action)
         {
             string qrCodeData = action.qrCode.Data;
-            SingleQRFollower follower = null;
-            foreach (QRPrefab qrFollower in qrFollowers)
-            {
-                if (qrFollower.data == qrCodeData)
-                {
-                    follower = qrFollower.follower;
-                }
-            }
-            GameObject qrCodeObject = Instantiate(follower == null ? defaultQrPrefab : silentQrPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject qrCodeObject = Instantiate(qrPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             qrCodeObject.GetComponent<SpatialGraphCoordinateSystem>().Id = action.qrCode.SpatialGraphNodeId;
             qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
             qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
-            if (follower != null)
-            {
-                follower.Follow(qrCodeObject.GetComponent<QRCode>());
-            }
         }
 
         // Update is called once per frame

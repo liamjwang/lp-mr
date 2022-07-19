@@ -81,10 +81,15 @@ namespace QRTracking
         {
             if (!Application.isEditor)
             {
+                Debug.Log("Starting QRCodesManager");
                 IsSupported = QRCodeWatcher.IsSupported();
                 capabilityTask = QRCodeWatcher.RequestAccessAsync();
                 accessStatus = await capabilityTask;
                 capabilityInitialized = true;
+            }
+            else
+            {
+                Debug.Log("QRCodesManager is not supported in the editor");
             }
         }
 

@@ -29,7 +29,7 @@ public class MultiQRTrack : MonoBehaviour
     
     public double errorDisplay;
 
-    private DateTimeOffset lastUpdate;
+    private long lastUpdate;
 
 
     void Start()
@@ -40,7 +40,7 @@ public class MultiQRTrack : MonoBehaviour
     void LateUpdate()
     {
         int latestCorrespondenceIndex = -1;
-        DateTimeOffset latestCorrespondenceTime = DateTimeOffset.MinValue;
+        long latestCorrespondenceTime = 0;
         for (int i = 0; i < qrCorrespondences.Count; i++)
         {
             QRCorrespondence corr = qrCorrespondences[i];

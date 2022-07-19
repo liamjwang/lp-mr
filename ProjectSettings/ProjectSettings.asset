@@ -183,6 +183,12 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 3421462107431843670, guid: 813f1b16ca59b4f42b26b896483fe490, type: 2}
   - {fileID: 4311887124619524885, guid: e93a3c2ca872bb042baabd9588c01523, type: 2}
   metroInputSource: 0
@@ -760,7 +766,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: lpmr
-  metroPackageVersion: 1.0.11.0
+  metroPackageVersion: 1.0.17.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: smarts

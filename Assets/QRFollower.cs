@@ -23,9 +23,9 @@ public class QRFollower : MonoBehaviour
     {
         Microsoft.MixedReality.QR.QRCode qrCode = obj.qrCode;
         SpatialGraphCoordinateSystem spatialGraphCoordinateSystem = gameObject.GetOrAddComponent<QRTracking.SpatialGraphCoordinateSystem>();
-        spatialGraphCoordinateSystem.Id = qrCode.Id;
+        spatialGraphCoordinateSystem.Id = qrCode.SpatialGraphNodeId;
         lastUpdated = qrCode.SystemRelativeLastDetectedTime.Ticks;
-        Debug.Log("QRFollower Updated: " + qrCode.Id + " " + qrCode.Data);
+        Debug.Log("QRFollower Updated: " + qrCode.Id + " " + qrCode.Data + " " + data);
     }
 
     // Update is called once per frame

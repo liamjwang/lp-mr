@@ -79,10 +79,13 @@ namespace QRTracking
         // Use this for initialization
         async protected virtual void Start()
         {
-            IsSupported = QRCodeWatcher.IsSupported();
-            capabilityTask = QRCodeWatcher.RequestAccessAsync();
-            accessStatus = await capabilityTask;
-            capabilityInitialized = true;
+            if (!Application.isEditor)
+            {
+                IsSupported = QRCodeWatcher.IsSupported();
+                capabilityTask = QRCodeWatcher.RequestAccessAsync();
+                accessStatus = await capabilityTask;
+                capabilityInitialized = true;
+            }
         }
 
         private void SetupQRTracking()

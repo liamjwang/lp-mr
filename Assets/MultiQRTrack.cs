@@ -8,10 +8,13 @@ public class MultiQRTrack : MonoBehaviour
 {
 
     [Serializable]
-    public struct QRCorrespondence
+    public class QRCorrespondence
     {
-        public GameObject targetQR;
+        public QRFollower targetQR;
         public GameObject sourceQR;
+        
+        [HideInInspector]
+        public bool excluded;
     }
     
     public List<QRCorrespondence> qrCorrespondences;
@@ -20,22 +23,80 @@ public class MultiQRTrack : MonoBehaviour
     public float lr = 0.02f;
     public float lrDelta = 0.01f;
     public float lrMin = 0.0001f;
-    public float errorDisplay;
+    public double minImprovement = 0.0001;
+    public double excludeRotThreshold = 0.01;
+    public double excludePosThreshold = 0.01;
+    
+    public double errorDisplay;
+
+    private DateTimeOffset lastUpdate;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
+        int latestCorrespondenceIndex = -1;
+        DateTimeOffset latestCorrespondenceTime = DateTimeOffset.MinValue;
+        for (int i = 0; i < qrCorrespondences.Count; i++)
+        {
+            QRCorrespondence corr = qrCorrespondences[i];
+            if (corr.targetQR.lastUpdated > latestCorrespondenceTime)
+            {
+                latestCorrespondenceTime = corr.targetQR.lastUpdated;
+                latestCorrespondenceIndex = i;
+            }
+        }
+
+        if (lastUpdate < latestCorrespondenceTime)
+        {
+            lastUpdate = latestCorrespondenceTime;
+            Debug.Log($"Latest correspondence is {latestCorrespondenceIndex}");
+            QRCorrespondence recentCorrespondence = qrCorrespondences[latestCorrespondenceIndex];
+            Matrix4x4 desiredPose = CalculateDesiredPose(recentCorrespondence);
+            transform.SetMatrix(desiredPose);
+            
+            recentCorrespondence.excluded = false;
+            
+            for (int i = 0; i < qrCorrespondences.Count; i++)
+            {
+                QRCorrespondence qrCorrespondence = qrCorrespondences[i];
+                Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
+                Transform targetQrTransform = qrCorrespondence.targetQR.transform;
+                Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix();
+                Matrix4x4 targetMatrix = targetQrTransform.GetMatrix();
+                Matrix4x4 deltaPose = targetMatrix.inverse * sourceMatrix;
+                double posMagnitude = deltaPose.GetPosition().magnitude;
+                double rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
+                qrCorrespondence.excluded = posMagnitude > excludePosThreshold || rotationMagnitude > excludeRotThreshold;
+                Debug.Log($"Excluded {i}? {posMagnitude > excludePosThreshold} {rotationMagnitude > excludeRotThreshold} {qrCorrespondence.excluded}");
+            }
+        }
+
+        double frameInitialLoss = Loss();
+        Matrix4x4 ogPose = transform.GetMatrix();
         for (int i = 0; i < 1000; i++)
         {
             StepOptimizer();
         }
+        double afterFrameLoss = Loss();
+        if (afterFrameLoss + minImprovement >= frameInitialLoss)
+        {
+            transform.SetMatrix(ogPose);
+        }
+    }
+
+    private static Matrix4x4 CalculateDesiredPose(QRCorrespondence qrCorrespondence)
+    {
+        Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
+        Transform targetQrTransform = qrCorrespondence.targetQR.transform;
+        Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix(Space.Self);
+        Matrix4x4 targetMatrix = targetQrTransform.GetMatrix(Space.World);
+        Matrix4x4 desiredPose = targetMatrix * sourceMatrix.inverse;
+        return desiredPose;
     }
 
     private void StepOptimizer()
@@ -43,18 +104,18 @@ public class MultiQRTrack : MonoBehaviour
         // Dumb optimizer that walks randomly instead of using gradient descent
         Quaternion rotationUniform = Random.rotationUniform;
 
-        float ogError = Loss();
+        double ogError = Loss();
 
         Quaternion quaternion = Quaternion.Slerp(Quaternion.identity, rotationUniform, lr * 10);
         Matrix4x4 randomPose = Matrix4x4.TRS(Random.insideUnitSphere * lr, quaternion, new Vector3(1, 1, 1));
         Matrix4x4 ogPose = transform.GetMatrix();
         transform.SetMatrix(randomPose * ogPose);
 
-        float newError = Loss();
+        double newError = Loss();
 
         errorDisplay = ogError;
 
-        if (newError > ogError)
+        if (newError >= ogError)
         {
             transform.SetMatrix(ogPose);
             lr *= 1 - lrDelta;
@@ -70,19 +131,23 @@ public class MultiQRTrack : MonoBehaviour
         }
     }
 
-    private float Loss()
+    private double Loss()
     {
-        float totalError = 0;
+        double totalError = 0;
         foreach (QRCorrespondence qrCorrespondence in qrCorrespondences)
         {
+            if (qrCorrespondence.excluded)
+            {
+                continue;
+            }
             Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
             Transform targetQrTransform = qrCorrespondence.targetQR.transform;
             Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix();
             Matrix4x4 targetMatrix = targetQrTransform.GetMatrix();
             Matrix4x4 deltaPose = targetMatrix.inverse * sourceMatrix;
-            float posMagnitudeSqr = deltaPose.GetPosition().sqrMagnitude;
-            float rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
-            float error = posMagnitudeSqr * kPosWeight + rotationMagnitude * rotationMagnitude * kRotWeight;
+            double posMagnitudeSqr = deltaPose.GetPosition().sqrMagnitude;
+            double rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
+            double error = posMagnitudeSqr * kPosWeight + rotationMagnitude * rotationMagnitude * kRotWeight;
             totalError += error;
         }
 

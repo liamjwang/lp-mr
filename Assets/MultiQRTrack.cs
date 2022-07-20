@@ -20,14 +20,15 @@ public class MultiQRTrack : MonoBehaviour
     public List<QRCorrespondence> qrCorrespondences;
     public float kPosWeight = 1;
     public float kRotWeight = 1;
-    public float lr = 0.02f;
-    public float lrDelta = 0.01f;
-    public float lrMin = 0.0001f;
-    public double minImprovement = 0.0001;
-    public double excludeRotThreshold = 0.01;
-    public double excludePosThreshold = 0.01;
+    public float translateLr = 0.02f;
+    public float rotateLr = 0.02f;
+    public float translateSlopeStep = 0.001f;
+    public float rotateSlopeStep = 0.001f;
+    public float minImprovement = 0.0001f;
+    public float excludeRotThreshold = 0.01f;
+    public float excludePosThreshold = 0.01f;
     
-    public double errorDisplay;
+    public float errorDisplay;
 
     private long lastUpdate;
 
@@ -57,7 +58,7 @@ public class MultiQRTrack : MonoBehaviour
             Debug.Log($"Latest correspondence is {latestCorrespondenceIndex}");
             QRCorrespondence recentCorrespondence = qrCorrespondences[latestCorrespondenceIndex];
             Matrix4x4 desiredPose = CalculateDesiredPose(recentCorrespondence);
-            transform.SetMatrix(desiredPose);
+            // transform.SetMatrix(desiredPose);
             
             recentCorrespondence.excluded = false;
             
@@ -69,24 +70,24 @@ public class MultiQRTrack : MonoBehaviour
                 Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix();
                 Matrix4x4 targetMatrix = targetQrTransform.GetMatrix();
                 Matrix4x4 deltaPose = targetMatrix.inverse * sourceMatrix;
-                double posMagnitude = deltaPose.GetPosition().magnitude;
-                double rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
+                float posMagnitude = deltaPose.GetPosition().magnitude;
+                float rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
                 qrCorrespondence.excluded = posMagnitude > excludePosThreshold || rotationMagnitude > excludeRotThreshold;
                 Debug.Log($"Excluded {i}? {posMagnitude > excludePosThreshold} {rotationMagnitude > excludeRotThreshold} {qrCorrespondence.excluded}");
             }
         }
 
-        double frameInitialLoss = Loss();
-        Matrix4x4 ogPose = transform.GetMatrix();
+        // float frameInitialLoss = Loss();
+        // Matrix4x4 ogPose = transform.GetMatrix();
         for (int i = 0; i < 100; i++)
         {
             StepOptimizer();
         }
-        double afterFrameLoss = Loss();
-        if (afterFrameLoss + minImprovement >= frameInitialLoss)
-        {
-            transform.SetMatrix(ogPose);
-        }
+        // float afterFrameLoss = Loss();
+        // if (afterFrameLoss + minImprovement >= frameInitialLoss)
+        // {
+        //     transform.SetMatrix(ogPose);
+        // }
     }
 
     private static Matrix4x4 CalculateDesiredPose(QRCorrespondence qrCorrespondence)
@@ -101,39 +102,63 @@ public class MultiQRTrack : MonoBehaviour
 
     private void StepOptimizer()
     {
-        // Dumb optimizer that walks randomly instead of using gradient descent
-        Quaternion rotationUniform = Random.rotationUniform;
+        float ogError = Loss();
 
-        double ogError = Loss();
-
-        Quaternion quaternion = Quaternion.Slerp(Quaternion.identity, rotationUniform, lr * 10);
-        Matrix4x4 randomPose = Matrix4x4.TRS(Random.insideUnitSphere * lr, quaternion, new Vector3(1, 1, 1));
-        Matrix4x4 ogPose = transform.GetMatrix();
-        transform.SetMatrix(randomPose * ogPose);
-
-        double newError = Loss();
-
-        errorDisplay = ogError;
-
-        if (newError >= ogError)
+        Vector3[] directions = new Vector3[]
         {
-            transform.SetMatrix(ogPose);
-            lr *= 1 - lrDelta;
-        }
-        else
+            Vector3.forward,
+            Vector3.right,
+            Vector3.up,
+        };
+
+        foreach (Vector3 direction in directions)
         {
-            lr *= 1 + lrDelta;
+            Matrix4x4 slopeStep = Matrix4x4.TRS(direction * translateSlopeStep, Quaternion.identity, new Vector3(1, 1, 1));
+            Matrix4x4 ogPose = transform.GetMatrix();
+            transform.SetMatrix(slopeStep * ogPose);
+
+            float newError = Loss();
+            float errorSlope = (newError - ogError) / translateSlopeStep;
+        
+            Matrix4x4 moveStep = Matrix4x4.TRS(direction * (-errorSlope * translateLr), Quaternion.identity, new Vector3(1, 1, 1));
+            transform.SetMatrix(moveStep * ogPose);
+        }
+        
+        
+        foreach (Vector3 direction in directions)
+        {
+            Matrix4x4 slopeStep = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(direction * rotateSlopeStep), new Vector3(1, 1, 1));
+            Matrix4x4 ogPose = transform.GetMatrix();
+            transform.SetMatrix(slopeStep * ogPose);
+
+            float newError = Loss();
+            float errorSlope = (newError - ogError) / translateSlopeStep;
+        
+            Matrix4x4 moveStep = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(direction * (-errorSlope * rotateLr)), new Vector3(1, 1, 1));
+            transform.SetMatrix(moveStep * ogPose);
         }
 
-        if (lr < lrMin)
-        {
-            lr = lrMin;
-        }
+
+        //
+        // if (newError >= ogError)
+        // {
+        //     transform.SetMatrix(ogPose);
+        //     lr *= 1 - lrDelta;
+        // }
+        // else
+        // {
+        //     lr *= 1 + lrDelta;
+        // }
+        //
+        // if (lr < lrMin)
+        // {
+        //     lr = lrMin;
+        // }
     }
 
-    private double Loss()
+    private float Loss()
     {
-        double totalError = 0;
+        float totalError = 0;
         foreach (QRCorrespondence qrCorrespondence in qrCorrespondences)
         {
             if (qrCorrespondence.excluded)
@@ -145,9 +170,9 @@ public class MultiQRTrack : MonoBehaviour
             Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix();
             Matrix4x4 targetMatrix = targetQrTransform.GetMatrix();
             Matrix4x4 deltaPose = targetMatrix.inverse * sourceMatrix;
-            double posMagnitudeSqr = deltaPose.GetPosition().sqrMagnitude;
-            double rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
-            double error = posMagnitudeSqr * kPosWeight + rotationMagnitude * rotationMagnitude * kRotWeight;
+            float posMagnitudeSqr = deltaPose.GetPosition().sqrMagnitude;
+            float rotationMagnitude = Quaternion.Angle(deltaPose.rotation, Quaternion.identity) / 180f * Mathf.PI;
+            float error = posMagnitudeSqr * kPosWeight + rotationMagnitude * rotationMagnitude * kRotWeight;
             totalError += error;
         }
 

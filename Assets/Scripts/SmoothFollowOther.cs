@@ -12,6 +12,7 @@ public class SmoothFollowOther : MonoBehaviour
     public float translateSmoothTime = 0.3F;
     public float rotateSmoothTime = 0.3F;
     public bool followScale = true;
+    public bool smoothingEnabled = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,18 +22,26 @@ public class SmoothFollowOther : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform myTransform = transform;
-        myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
-        Quaternion transformRotation = myTransform.rotation;
-        float delta = Quaternion.Angle(transformRotation, other.rotation);
-        if (delta > 0f)
+        if (!smoothingEnabled)
         {
-            float t = Mathf.SmoothDampAngle(delta, 0.0f, ref currVel, rotateSmoothTime);
-            t = 1.0f - (t / delta);
-            myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
+            transform.position = other.position;
+            transform.rotation = other.rotation;
         }
+        else
+        {
+            Transform myTransform = transform;
+            myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
+            Quaternion transformRotation = myTransform.rotation;
+            float delta = Quaternion.Angle(transformRotation, other.rotation);
+            if (delta > 0f)
+            {
+                float t = Mathf.SmoothDampAngle(delta, 0.0f, ref currVel, rotateSmoothTime);
+                t = 1.0f - (t / delta);
+                myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
+            }
 
-        if (followScale)
-            myTransform.localScale = other.localScale;
+            if (followScale)
+                myTransform.localScale = other.localScale;
+        }
     }
 }

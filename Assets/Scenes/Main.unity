@@ -12320,7 +12320,7 @@ MonoBehaviour:
   translateLr: 0.02
   rotateLr: 0.2
   translateSlopeStep: 0.001
-  rotateSlopeStep: 0.1
+  rotateSlopeStep: 1
   minImprovement: 0
   excludeRotThreshold: 1000.1
   excludePosThreshold: 1000.01

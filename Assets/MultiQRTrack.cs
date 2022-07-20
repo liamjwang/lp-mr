@@ -58,7 +58,7 @@ public class MultiQRTrack : MonoBehaviour
             Debug.Log($"Latest correspondence is {latestCorrespondenceIndex}");
             QRCorrespondence recentCorrespondence = qrCorrespondences[latestCorrespondenceIndex];
             Matrix4x4 desiredPose = CalculateDesiredPose(recentCorrespondence);
-            // transform.SetMatrix(desiredPose);
+            transform.SetMatrix(desiredPose);
             
             recentCorrespondence.excluded = false;
             
@@ -83,7 +83,8 @@ public class MultiQRTrack : MonoBehaviour
         {
             StepOptimizer();
         }
-        // float afterFrameLoss = Loss();
+        float afterFrameLoss = Loss();
+        errorDisplay = afterFrameLoss;
         // if (afterFrameLoss + minImprovement >= frameInitialLoss)
         // {
         //     transform.SetMatrix(ogPose);

@@ -24,21 +24,18 @@ public class QRFollower : MonoBehaviour
         Microsoft.MixedReality.QR.QRCode qrCode = obj.qrCode;
         SpatialGraphCoordinateSystem spatialGraphCoordinateSystem = gameObject.GetOrAddComponent<QRTracking.SpatialGraphCoordinateSystem>();
         spatialGraphCoordinateSystem.Id = qrCode.SpatialGraphNodeId;
-        lastUpdated = qrCode.SystemRelativeLastDetectedTime.Ticks;
+        lastUpdated = Time.frameCount;
         Debug.Log("QRFollower Updated: " + qrCode.Id + " " + qrCode.Data + " " + data);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Application.isEditor)
+        Matrix4x4 pose = transform.GetMatrix();
+        if (lastPose != pose) // exact
         {
-            Matrix4x4 pose = transform.GetMatrix();
-            if (lastPose != pose) // exact
-            {
-                lastPose = pose;
-                lastUpdated = Time.frameCount;
-            }
+            lastPose = pose;
+            lastUpdated = Time.frameCount;
         }
     }
 }

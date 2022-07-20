@@ -29,6 +29,8 @@ public class MultiQRTrack : MonoBehaviour
     public float excludePosThreshold = 0.01f;
     
     public float errorDisplay;
+    
+    public bool enableOptimization = true;
 
     private long lastUpdate;
 
@@ -75,13 +77,18 @@ public class MultiQRTrack : MonoBehaviour
                 qrCorrespondence.excluded = posMagnitude > excludePosThreshold || rotationMagnitude > excludeRotThreshold;
                 Debug.Log($"Excluded {i}? {posMagnitude > excludePosThreshold} {rotationMagnitude > excludeRotThreshold} {qrCorrespondence.excluded}");
             }
+
+            SetAverage();
         }
 
         // float frameInitialLoss = Loss();
         // Matrix4x4 ogPose = transform.GetMatrix();
-        for (int i = 0; i < 100; i++)
+        if (enableOptimization)
         {
-            StepOptimizer();
+            for (int i = 0; i < 100; i++)
+            {
+                StepOptimizer();
+            }
         }
         float afterFrameLoss = Loss();
         errorDisplay = afterFrameLoss;
@@ -161,6 +168,58 @@ public class MultiQRTrack : MonoBehaviour
         }
 
         return totalError;
+    }
+
+    private void SetAverage()
+    {
+        List<Matrix4x4> desiredPoses = new List<Matrix4x4>();
+        
+        foreach (QRCorrespondence qrCorrespondence in qrCorrespondences)
+        {
+            if (qrCorrespondence.excluded)
+            {
+                continue;
+            }
+            Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
+            Transform targetQrTransform = qrCorrespondence.targetQR.transform;
+            Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix(Space.Self);
+            Matrix4x4 targetMatrix = targetQrTransform.GetMatrix(Space.World);
+            Matrix4x4 desiredPose = targetMatrix * sourceMatrix.inverse;
+            desiredPoses.Add(desiredPose);
+        }
+
+
+        List<Quaternion> qList = new List<Quaternion>();
+        List<Vector3> vList = new List<Vector3>();
+        
+        foreach (Matrix4x4 pose in desiredPoses)
+        {
+            qList.Add(pose.rotation);
+            vList.Add(pose.GetPosition());
+        }
+        
+        
+        Quaternion averageQuat = Quaternion.identity ;
+        
+        float averageWeight = 1f / qList.Count ;
+ 
+        for ( int i = 0; i < qList.Count; i ++ )
+        {
+            Quaternion q = qList [ i ] ;
+ 
+            averageQuat *= Quaternion.Slerp ( Quaternion.identity, q, averageWeight ) ;
+        }
+        
+        Vector3 averagePos = Vector3.zero ;
+        
+        foreach (Vector3 vector3 in vList)
+        {
+            averagePos += vector3;
+        }
+        averagePos /= vList.Count;
+        
+        
+        transform.SetMatrix(Matrix4x4.TRS(averagePos, averageQuat, Vector3.one), Space.World);
     }
 }
 

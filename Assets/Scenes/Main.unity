@@ -12322,9 +12322,10 @@ MonoBehaviour:
   translateSlopeStep: 0.001
   rotateSlopeStep: 1
   minImprovement: 0
-  excludeRotThreshold: 1000.1
-  excludePosThreshold: 1000.01
+  excludeRotThreshold: 0.1
+  excludePosThreshold: 0.01
   errorDisplay: 0
+  enableOptimization: 1
 --- !u!1 &1743653362
 GameObject:
   m_ObjectHideFlags: 0

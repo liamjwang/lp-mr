@@ -137,23 +137,6 @@ public class MultiQRTrack : MonoBehaviour
             Matrix4x4 moveStep = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(direction * (-errorSlope * rotateLr)), new Vector3(1, 1, 1));
             transform.SetMatrix(moveStep * ogPose);
         }
-
-
-        //
-        // if (newError >= ogError)
-        // {
-        //     transform.SetMatrix(ogPose);
-        //     lr *= 1 - lrDelta;
-        // }
-        // else
-        // {
-        //     lr *= 1 + lrDelta;
-        // }
-        //
-        // if (lr < lrMin)
-        // {
-        //     lr = lrMin;
-        // }
     }
 
     private float Loss()

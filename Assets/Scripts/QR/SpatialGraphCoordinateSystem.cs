@@ -116,7 +116,7 @@ namespace QRTracking
                     }
                     else
                     {
-                       // Debug.Log("Id= " + id + " Unable to locate qrcode" );
+                       Debug.Log("Id= " + id + " Unable to locate qrcode" );
                     }
                 }
                 else

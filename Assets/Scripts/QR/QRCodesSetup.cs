@@ -25,6 +25,10 @@ namespace QRTracking
             {
                 qrCodesManager.StartQRTracking();
             }
+            if (VisualizeQRCodes)
+            {
+                gameObject.AddComponent(typeof(QRTracking.QRCodesVisualizer));
+            }
         }
 
         void Start()

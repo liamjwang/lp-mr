@@ -60,34 +60,38 @@ public class ZMQConnection : MonoBehaviour
 
     private void LateUpdate() // could also be in update
     {
-
-        var receivedMessages = new Dictionary<string, byte[]>();
-        
-        List<byte[]> msg = null;
-        for (var count = 0; count < 100; count++)
+        if (subscriber != null)
         {
-            if (!subscriber.TryReceiveMultipartBytes(ref msg)) break;
-            if (msg.Count != 2) continue;
-            receivedMessages[System.Text.Encoding.ASCII.GetString(msg[0])] = msg[1];
-        }
-
-        foreach (var pair in receivedMessages)
-        {
-            var callback = callbacks.GetValueOrDefault(pair.Key, null);
-            if (callback == null) continue;
-            Type type = types.GetValueOrDefault(pair.Key, null);
-            if (type == null) continue;
             
-            MemoryStream memoryStream = new(pair.Value);
-            WireFrame readSegments = Framing.ReadSegments(memoryStream);
-            var deserializer = DeserializerState.CreateRoot(readSegments);
-            if (Activator.CreateInstance(type) is not ICapnpSerializable message) continue;
-            message.Deserialize(deserializer);
-            foreach (var c in callback)
+            var receivedMessages = new Dictionary<string, byte[]>();
+        
+            List<byte[]> msg = null;
+            for (var count = 0; count < 100; count++)
             {
-                c(message);
+                if (!subscriber.TryReceiveMultipartBytes(ref msg)) break;
+                if (msg.Count != 2) continue;
+                receivedMessages[System.Text.Encoding.ASCII.GetString(msg[0])] = msg[1];
+            }
+
+            foreach (var pair in receivedMessages)
+            {
+                var callback = callbacks.GetValueOrDefault(pair.Key, null);
+                if (callback == null) continue;
+                Type type = types.GetValueOrDefault(pair.Key, null);
+                if (type == null) continue;
+            
+                MemoryStream memoryStream = new(pair.Value);
+                WireFrame readSegments = Framing.ReadSegments(memoryStream);
+                var deserializer = DeserializerState.CreateRoot(readSegments);
+                if (Activator.CreateInstance(type) is not ICapnpSerializable message) continue;
+                message.Deserialize(deserializer);
+                foreach (var c in callback)
+                {
+                    c(message);
+                }
             }
         }
+
     }
     
     public void Subscribe<T>(string topic, Action<T> callback) where T : ICapnpSerializable

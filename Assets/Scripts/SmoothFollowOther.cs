@@ -13,6 +13,7 @@ public class SmoothFollowOther : MonoBehaviour
     public float rotateSmoothTime = 0.3F;
     public bool followScale = true;
     public bool smoothingEnabled = true;
+    public float maxDistance = 0.04f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,11 @@ public class SmoothFollowOther : MonoBehaviour
         }
         else
         {
+            if (Vector3.Distance(transform.position, other.position) > maxDistance)
+            {
+                transform.position = other.position;
+                transform.rotation = other.rotation;
+            }
             Transform myTransform = transform;
             myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
             Quaternion transformRotation = myTransform.rotation;

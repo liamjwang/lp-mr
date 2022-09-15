@@ -7086,8 +7086,8 @@ MonoBehaviour:
   other: {fileID: 1738804778}
   translateSmoothTime: 0.3
   rotateSmoothTime: 0.3
-  followScale: 1
-  smoothingEnabled: 0
+  followScale: 0
+  smoothingEnabled: 1
 --- !u!4 &1139015365
 Transform:
   m_ObjectHideFlags: 0

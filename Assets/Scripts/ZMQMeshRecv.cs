@@ -32,8 +32,7 @@ public class ZMQMeshRecv : MonoBehaviour
         Vector3[] vertices = new Vector3[mesh.Vertices.Count / 3];
         for (int i = 0; i < mesh.Vertices.Count; i += 3)
         {
-            var scaleFactor = 1000;
-            vertices[i / 3] = new Vector3(mesh.Vertices[i]/scaleFactor, mesh.Vertices[i + 1]/scaleFactor, mesh.Vertices[i + 2]/scaleFactor);
+            vertices[i / 3] = new Vector3(mesh.Vertices[i], mesh.Vertices[i + 1], mesh.Vertices[i + 2]);
         }
 
         myMesh.vertices = vertices;

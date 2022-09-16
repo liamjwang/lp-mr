@@ -14,6 +14,8 @@ namespace Microsoft.MixedReality.Toolkit.UI
     {
         #region Properties
 
+        public Transform pivot;
+
         [SerializeField]
         [EnumFlags]
         [Tooltip("Constrain movement along an axis")]
@@ -95,6 +97,8 @@ namespace Microsoft.MixedReality.Toolkit.UI
             //     }
             // }
             // transform.Position = worldPoseOnManipulationStart.Position;
+            Vector3 lookVector = transform.Position - pivot.position;
+            transform.Position = pivot.position - lookVector.normalized * 0.3f;
             Debug.Log(transform.Position);
         }
 

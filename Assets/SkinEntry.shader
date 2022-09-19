@@ -5,12 +5,16 @@ Shader "Unlit/SkinEntry"
     Properties
     {
         _RingColor ("Ring Color", Color) = (1,1,1,1)
+        _RingObstructedColor ("Ring Obstructed Color", Color) = (1,0,0,1)
+        _TargetColor ("Target Color", Color) = (0,1,0,1)
+        _TargetObstructedColor ("Target Obstructed Color", Color) = (0,0,1,1)
+        _TargetRadius ("Target Radius", Range(0, 0.1)) = 0.05
         _RingWidth ("Ring Width", Range(0, 0.1)) = 0.1
         _CrosshairWidth ("Crosshair Width", Range(0, 0.1)) = 0.1
         _NeedleTipPosition ("Needle Tip Position", Vector) = (0,0,0)
         _NeedleTipDirection ("Needle Tip Direction", Vector) = (0,0,0)
         _TargetPosition ("Target Position", Vector) = (0,0,0)
-        _RingObstructedColor ("Ring Obstructed Color", Color) = (1,0,0,1)
+        
     }
     SubShader
     {
@@ -26,10 +30,7 @@ Shader "Unlit/SkinEntry"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
-            // #define linearstep(edge0, edge1, x) clamp((x - (edge0)) / (edge1 - (edge0)), 0.0, 1.0)
 
             #include "UnityCG.cginc"
 
@@ -60,11 +61,16 @@ Shader "Unlit/SkinEntry"
             };
 
             float4 _RingColor;
+            float4 _RingObstructedColor;
+            float4 _TargetColor;
+            float4 _TargetObstructedColor;
+
+            float _TargetRadius;
             float _RingWidth;
             float _CrosshairWidth;
             float3 _NeedleTipPosition;
             float3 _NeedleTipDirection;
-            float4 _RingObstructedColor;
+            float3 _TargetPosition;
 
             v2f vert (appdata v)
             {
@@ -89,14 +95,18 @@ Shader "Unlit/SkinEntry"
                 float3 intersection = q + l * d;
 
                 // distance to intersection
-                float dist = length(intersection - p);
+                float dist = length(intersection - p) * 2.0;
                 bool insideOuterRing = dist < d + _RingWidth;
-                bool show = dist > d && insideOuterRing;
+                bool crosshairsMask = dist > d && insideOuterRing;
 
                 float3 intersectCoords = p - intersection;
-                show = show || (insideOuterRing && (abs(intersectCoords.x) < _CrosshairWidth || abs(intersectCoords.z) < _CrosshairWidth));
-                clip(show ? 1 : -1);
-                return _RingColor;
+                crosshairsMask = crosshairsMask || (insideOuterRing && (abs(intersectCoords.x) < _CrosshairWidth || abs(intersectCoords.z) < _CrosshairWidth));
+
+                bool targetMask = length(p - _TargetPosition) < _TargetRadius;
+
+                
+                clip(crosshairsMask || targetMask ? 1 : -1);
+                return crosshairsMask ? _RingColor : _TargetColor;
             }
             
             ENDCG
@@ -105,21 +115,18 @@ Shader "Unlit/SkinEntry"
         
         Pass
         {
+            Ztest Greater
+            Blend DstColor Zero
             Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
             LOD 100
             
             Cull Off
-            Ztest Greater
-//            Blend DstColor Zero
-            Blend DstColor Zero
             
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
-            // #define linearstep(edge0, edge1, x) clamp((x - (edge0)) / (edge1 - (edge0)), 0.0, 1.0)
 
             #include "UnityCG.cginc"
 
@@ -150,11 +157,16 @@ Shader "Unlit/SkinEntry"
             };
 
             float4 _RingColor;
+            float4 _RingObstructedColor;
+            float4 _TargetColor;
+            float4 _TargetObstructedColor;
+
+            float _TargetRadius;
             float _RingWidth;
             float _CrosshairWidth;
             float3 _NeedleTipPosition;
             float3 _NeedleTipDirection;
-            float4 _RingObstructedColor;
+            float3 _TargetPosition;
 
             v2f vert (appdata v)
             {
@@ -179,14 +191,18 @@ Shader "Unlit/SkinEntry"
                 float3 intersection = q + l * d;
 
                 // distance to intersection
-                float dist = length(intersection - p);
+                float dist = length(intersection - p) * 2.0;
                 bool insideOuterRing = dist < d + _RingWidth;
-                bool show = dist > d && insideOuterRing;
+                bool crosshairsMask = dist > d && insideOuterRing;
 
                 float3 intersectCoords = p - intersection;
-                show = show || (insideOuterRing && (abs(intersectCoords.x) < _CrosshairWidth || abs(intersectCoords.z) < _CrosshairWidth));
-                clip(show ? 1 : -1);
-                return _RingObstructedColor;
+                crosshairsMask = crosshairsMask || (insideOuterRing && (abs(intersectCoords.x) < _CrosshairWidth || abs(intersectCoords.z) < _CrosshairWidth));
+
+                bool targetMask = length(p - _TargetPosition) < _TargetRadius;
+
+                
+                clip(crosshairsMask || targetMask ? 1 : -1);
+                return crosshairsMask ? _RingObstructedColor : _TargetObstructedColor;
             }
             
             ENDCG

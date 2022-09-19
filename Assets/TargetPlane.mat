@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skin
+  m_Name: TargetPlane
   m_Shader: {fileID: 4800000, guid: c85725da421e6448ba8e73fc4c667f48, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -86,5 +86,5 @@ Material:
     - _RingObstructedColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     - _TargetColor: {r: 1, g: 0, b: 0.009994984, a: 1}
     - _TargetObstructedColor: {r: 0, g: 0, b: 1, a: 1}
-    - _TargetPosition: {r: 0.06900004, g: -0.048899986, b: 0.25909996, a: 0}
+    - _TargetPosition: {r: 0.06900001, g: -0.1111, b: 0.25909996, a: 0}
   m_BuildTextureStacks: []

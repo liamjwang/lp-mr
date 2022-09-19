@@ -67,6 +67,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
+    - _MinDistance: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -75,16 +76,18 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TargetRadius: 0.001
+    - _TargetRingRadius: 0.0062
+    - _TargetRingWidth: 0.0007
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NeedleTipDirection: {r: -0, g: -1, b: -0, a: 0}
-    - _NeedleTipPosition: {r: 0.06875, g: -0.0022, b: 0.25926, a: 0}
+    - _NeedleTipPosition: {r: 0.0771, g: -0.0397, b: 0.25582, a: 0}
     - _RingColor: {r: 0.023587942, g: 1, b: 0, a: 1}
     - _RingObstructedColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     - _TargetColor: {r: 1, g: 0, b: 0.009994984, a: 1}
     - _TargetObstructedColor: {r: 0, g: 0, b: 1, a: 1}
-    - _TargetPosition: {r: 0.06900001, g: -0.1111, b: 0.25909996, a: 0}
+    - _TargetPosition: {r: 0.08020001, g: -0.1111, b: 0.25579998, a: 0}
   m_BuildTextureStacks: []

@@ -80,7 +80,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NeedleTipDirection: {r: -0.30255017, g: -0.95313346, b: -0.0000012852252, a: 0}
-    - _NeedleTipPosition: {r: -0.017899998, g: -0.0781, b: 0.22339998, a: 0}
+    - _NeedleTipPosition: {r: 0.0051000044, g: 0.0362, b: 0.22339997, a: 0}
     - _RingColor: {r: 0, g: 0.23935056, b: 1, a: 1}
     - _RingObstructedColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
     - _TargetPosition: {r: -0.0631, g: -0.0507, b: 0.19879998, a: 0}

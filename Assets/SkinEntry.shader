@@ -22,7 +22,7 @@ Shader "Unlit/SkinEntry"
             
             Cull Off
             
-            
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -47,6 +47,7 @@ Shader "Unlit/SkinEntry"
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID 
             };
 
             struct v2f
@@ -55,6 +56,7 @@ Shader "Unlit/SkinEntry"
                 float4 vertex : SV_POSITION;
                 float3 worldpos : TEXCOORD1;
                 float3 worldnormal : TEXCOORD2;
+                UNITY_VERTEX_OUTPUT_STEREO 
             };
 
             float4 _RingColor;
@@ -62,10 +64,14 @@ Shader "Unlit/SkinEntry"
             float _CrosshairWidth;
             float3 _NeedleTipPosition;
             float3 _NeedleTipDirection;
+            float4 _RingObstructedColor;
 
             v2f vert (appdata v)
             {
                 v2f o;
+                UNITY_SETUP_INSTANCE_ID(v); //Insert
+                UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.worldpos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.worldnormal = mul(unity_ObjectToWorld, v.normal).xyz;
@@ -131,6 +137,7 @@ Shader "Unlit/SkinEntry"
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID 
             };
 
             struct v2f
@@ -139,6 +146,7 @@ Shader "Unlit/SkinEntry"
                 float4 vertex : SV_POSITION;
                 float3 worldpos : TEXCOORD1;
                 float3 worldnormal : TEXCOORD2;
+                UNITY_VERTEX_OUTPUT_STEREO 
             };
 
             float4 _RingColor;
@@ -151,6 +159,9 @@ Shader "Unlit/SkinEntry"
             v2f vert (appdata v)
             {
                 v2f o;
+                UNITY_SETUP_INSTANCE_ID(v); //Insert
+                UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.worldpos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.worldnormal = mul(unity_ObjectToWorld, v.normal).xyz;

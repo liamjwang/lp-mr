@@ -2,7 +2,8 @@
 {
     Properties
     {
-        _LinePoint ("Point", Vector) = (1,1,1,1)
+        _NeedleTipPosition ("Line Point", Vector) = (1,1,1,1)
+        _NeedleTipDirection ("Line Normal", Vector) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
@@ -17,21 +18,21 @@
     {
         Tags
         {
-            "Queue"="Transparent"
-            "RenderType"="Transparent+110"
+//            "Queue"="Transparent"
+//            "RenderType"="Transparent+110"
 //            "IgnoreProjector"="True"
         }
         ZWrite On
-        Blend SrcAlpha OneMinusSrcAlpha
-        Cull off
-              ColorMask 0
-        ZTest Always
+//        Blend SrcAlpha OneMinusSrcAlpha
+//        Cull off
+//        ColorMask 0
+//        ZTest Always
 
-
-      Stencil {
-        Ref 1
-        Comp NotEqual
-      }
+//
+//      Stencil {
+//        Ref 1
+//        Comp NotEqual
+//      }
 
 
         LOD 200
@@ -61,8 +62,8 @@
         // float _Cutoff;
 
 
-        float4 _LinePoint;
-        float4 _LineNormal;
+        float4 _NeedleTipPosition;
+        float4 _NeedleTipDirection;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -84,9 +85,9 @@
 
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
-            float3 lineToMe = IN.worldPos.xyz - _LinePoint.xyz;
+            float3 lineToMe = IN.worldPos.xyz - _NeedleTipPosition.xyz;
 
-            float component = dot(lineToMe, normalize(_LineNormal.xyz));
+            float component = dot(lineToMe, normalize(_NeedleTipDirection.xyz));
             float lineToMeDist = length(lineToMe);
             float distanceToLine = sqrt(lineToMeDist * lineToMeDist - component * component);
             // float distanceToLine = distance(i.globalVertex.xyz, _LinePoint.xyz);

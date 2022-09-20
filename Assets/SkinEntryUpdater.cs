@@ -22,9 +22,18 @@ public class SkinEntryUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        skinMaterial.SetVector(NeedleTipPosition, needleTip.transform.position);
-        skinMaterial.SetVector(NeedleTipDirection, -needleTip.transform.up);
-        skinMaterial.SetVector(TargetPosition, planEntry.transform.position);
+        if (skinMaterial != null)
+        {
+            if (needleTip != null)
+            {
+                skinMaterial.SetVector(NeedleTipPosition, needleTip.transform.position);
+                skinMaterial.SetVector(NeedleTipDirection, -needleTip.transform.up);
+            }
+            if (planEntry != null)
+            {
+                skinMaterial.SetVector(TargetPosition, planEntry.transform.position);
+            }
+        }
     }
     
 }

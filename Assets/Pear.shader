@@ -9,6 +9,8 @@
         _FarDist ("_FarDist", Range(0.0, 1.0)) = 0.5
         
 //        _TrackPoint ("_TrackPoint", Vector) = (1,0,0,0)
+        _LinePoint ("_LinePoint", Vector) = (0,0,0,0)
+        _LineNormal ("_LineNormal", Vector) = (0,0,0,0)
     }
     SubShader
     {

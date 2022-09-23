@@ -14,6 +14,7 @@ public class SmoothFollowOther : MonoBehaviour
     public bool followScale = true;
     public bool smoothingEnabled = true;
     public float maxDistance = 0.04f;
+    public bool local = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,27 +24,59 @@ public class SmoothFollowOther : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 otherPosition = !local ? other.position : other.localPosition;
+        Quaternion otherRotation = !local ? other.rotation : other.localRotation;
         if (!smoothingEnabled)
         {
-            transform.position = other.position;
-            transform.rotation = other.rotation;
+            if (!local)
+            {
+                transform.position = otherPosition;
+                transform.rotation = otherRotation;
+            }
+            else
+            {
+                transform.localPosition = other.localPosition;
+                transform.localRotation = other.localRotation;
+            }
         }
         else
         {
-            if (Vector3.Distance(transform.position, other.position) > maxDistance)
+            if (Vector3.Distance(transform.position, otherPosition) > maxDistance)
             {
-                transform.position = other.position;
-                transform.rotation = other.rotation;
+                if (!local)
+                {
+                    transform.position = otherPosition;
+                    transform.rotation = otherRotation;
+                }
+                else
+                {
+                    transform.localPosition = other.localPosition;
+                    transform.localRotation = other.localRotation;
+                }
             }
             Transform myTransform = transform;
-            myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
+            Vector3 currentPosition = Vector3.SmoothDamp(myTransform.position, otherPosition, ref velocity, translateSmoothTime);
+            if (!local)
+            {
+                myTransform.position = currentPosition;
+            } else
+            {
+                myTransform.localPosition = currentPosition;
+            }
             Quaternion transformRotation = myTransform.rotation;
-            float delta = Quaternion.Angle(transformRotation, other.rotation);
+            float delta = Quaternion.Angle(transformRotation, otherRotation);
             if (delta > 0f)
             {
                 float t = Mathf.SmoothDampAngle(delta, 0.0f, ref currVel, rotateSmoothTime);
                 t = 1.0f - (t / delta);
-                myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
+                Quaternion currentRotation = Quaternion.Slerp(transformRotation, otherRotation, t);
+                if (!local)
+                {
+                    myTransform.rotation = currentRotation;
+                } else
+                {
+                    myTransform.localRotation = currentRotation;
+                }
             }
 
             if (followScale)

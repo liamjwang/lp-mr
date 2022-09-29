@@ -263,22 +263,26 @@ namespace CapnpGen
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xceaf562ebd624d26UL)]
-    public class Pose : ICapnpSerializable
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xb63743cb4672477bUL)]
+    public class Color : ICapnpSerializable
     {
-        public const UInt64 typeId = 0xceaf562ebd624d26UL;
+        public const UInt64 typeId = 0xb63743cb4672477bUL;
         void ICapnpSerializable.Deserialize(DeserializerState arg_)
         {
             var reader = READER.create(arg_);
-            Position = CapnpSerializable.Create<CapnpGen.Vector3>(reader.Position);
-            Orientation = CapnpSerializable.Create<CapnpGen.Quaternion>(reader.Orientation);
+            R = reader.R;
+            G = reader.G;
+            B = reader.B;
+            A = reader.A;
             applyDefaults();
         }
 
         public void serialize(WRITER writer)
         {
-            Position?.serialize(writer.Position);
-            Orientation?.serialize(writer.Orientation);
+            writer.R = R;
+            writer.G = G;
+            writer.B = B;
+            writer.A = A;
         }
 
         void ICapnpSerializable.Serialize(SerializerState arg_)
@@ -290,13 +294,25 @@ namespace CapnpGen
         {
         }
 
-        public CapnpGen.Vector3 Position
+        public float R
         {
             get;
             set;
         }
 
-        public CapnpGen.Quaternion Orientation
+        public float G
+        {
+            get;
+            set;
+        }
+
+        public float B
+        {
+            get;
+            set;
+        }
+
+        public float A
         {
             get;
             set;
@@ -313,27 +329,191 @@ namespace CapnpGen
             public static READER create(DeserializerState ctx) => new READER(ctx);
             public static implicit operator DeserializerState(READER reader) => reader.ctx;
             public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
-            public CapnpGen.Vector3.READER Position => ctx.ReadStruct(0, CapnpGen.Vector3.READER.create);
-            public CapnpGen.Quaternion.READER Orientation => ctx.ReadStruct(1, CapnpGen.Quaternion.READER.create);
+            public float R => ctx.ReadDataFloat(0UL, 0F);
+            public float G => ctx.ReadDataFloat(32UL, 0F);
+            public float B => ctx.ReadDataFloat(64UL, 0F);
+            public float A => ctx.ReadDataFloat(96UL, 0F);
         }
 
         public class WRITER : SerializerState
         {
             public WRITER()
             {
-                this.SetStruct(0, 2);
+                this.SetStruct(2, 0);
             }
 
-            public CapnpGen.Vector3.WRITER Position
+            public float R
             {
-                get => BuildPointer<CapnpGen.Vector3.WRITER>(0);
+                get => this.ReadDataFloat(0UL, 0F);
+                set => this.WriteData(0UL, value, 0F);
+            }
+
+            public float G
+            {
+                get => this.ReadDataFloat(32UL, 0F);
+                set => this.WriteData(32UL, value, 0F);
+            }
+
+            public float B
+            {
+                get => this.ReadDataFloat(64UL, 0F);
+                set => this.WriteData(64UL, value, 0F);
+            }
+
+            public float A
+            {
+                get => this.ReadDataFloat(96UL, 0F);
+                set => this.WriteData(96UL, value, 0F);
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xa91efae1aa564815UL)]
+    public class PBRMetallicRoughness : ICapnpSerializable
+    {
+        public const UInt64 typeId = 0xa91efae1aa564815UL;
+        void ICapnpSerializable.Deserialize(DeserializerState arg_)
+        {
+            var reader = READER.create(arg_);
+            BaseColorFactor = CapnpSerializable.Create<CapnpGen.Color>(reader.BaseColorFactor);
+            MetallicFactor = reader.MetallicFactor;
+            RoughnessFactor = reader.RoughnessFactor;
+            applyDefaults();
+        }
+
+        public void serialize(WRITER writer)
+        {
+            BaseColorFactor?.serialize(writer.BaseColorFactor);
+            writer.MetallicFactor = MetallicFactor;
+            writer.RoughnessFactor = RoughnessFactor;
+        }
+
+        void ICapnpSerializable.Serialize(SerializerState arg_)
+        {
+            serialize(arg_.Rewrap<WRITER>());
+        }
+
+        public void applyDefaults()
+        {
+        }
+
+        public CapnpGen.Color BaseColorFactor
+        {
+            get;
+            set;
+        }
+
+        public float MetallicFactor
+        {
+            get;
+            set;
+        }
+
+        public float RoughnessFactor
+        {
+            get;
+            set;
+        }
+
+        public struct READER
+        {
+            readonly DeserializerState ctx;
+            public READER(DeserializerState ctx)
+            {
+                this.ctx = ctx;
+            }
+
+            public static READER create(DeserializerState ctx) => new READER(ctx);
+            public static implicit operator DeserializerState(READER reader) => reader.ctx;
+            public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
+            public CapnpGen.Color.READER BaseColorFactor => ctx.ReadStruct(0, CapnpGen.Color.READER.create);
+            public float MetallicFactor => ctx.ReadDataFloat(0UL, 0F);
+            public float RoughnessFactor => ctx.ReadDataFloat(32UL, 0F);
+        }
+
+        public class WRITER : SerializerState
+        {
+            public WRITER()
+            {
+                this.SetStruct(1, 1);
+            }
+
+            public CapnpGen.Color.WRITER BaseColorFactor
+            {
+                get => BuildPointer<CapnpGen.Color.WRITER>(0);
                 set => Link(0, value);
             }
 
-            public CapnpGen.Quaternion.WRITER Orientation
+            public float MetallicFactor
             {
-                get => BuildPointer<CapnpGen.Quaternion.WRITER>(1);
-                set => Link(1, value);
+                get => this.ReadDataFloat(0UL, 0F);
+                set => this.WriteData(0UL, value, 0F);
+            }
+
+            public float RoughnessFactor
+            {
+                get => this.ReadDataFloat(32UL, 0F);
+                set => this.WriteData(32UL, value, 0F);
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xceaf562ebd624d26UL)]
+    public class Pose : ICapnpSerializable
+    {
+        public const UInt64 typeId = 0xceaf562ebd624d26UL;
+        void ICapnpSerializable.Deserialize(DeserializerState arg_)
+        {
+            var reader = READER.create(arg_);
+            HomogeneousMatrix = reader.HomogeneousMatrix;
+            applyDefaults();
+        }
+
+        public void serialize(WRITER writer)
+        {
+            writer.HomogeneousMatrix.Init(HomogeneousMatrix);
+        }
+
+        void ICapnpSerializable.Serialize(SerializerState arg_)
+        {
+            serialize(arg_.Rewrap<WRITER>());
+        }
+
+        public void applyDefaults()
+        {
+        }
+
+        public IReadOnlyList<float> HomogeneousMatrix
+        {
+            get;
+            set;
+        }
+
+        public struct READER
+        {
+            readonly DeserializerState ctx;
+            public READER(DeserializerState ctx)
+            {
+                this.ctx = ctx;
+            }
+
+            public static READER create(DeserializerState ctx) => new READER(ctx);
+            public static implicit operator DeserializerState(READER reader) => reader.ctx;
+            public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
+            public IReadOnlyList<float> HomogeneousMatrix => ctx.ReadList(0).CastFloat();
+        }
+
+        public class WRITER : SerializerState
+        {
+            public WRITER()
+            {
+                this.SetStruct(0, 1);
+            }
+
+            public ListOfPrimitivesSerializer<float> HomogeneousMatrix
+            {
+                get => BuildPointer<ListOfPrimitivesSerializer<float>>(0);
+                set => Link(0, value);
             }
         }
     }
@@ -488,16 +668,91 @@ namespace CapnpGen
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0x867e63b587fcc2d1UL)]
-    public class MeshStamped : ICapnpSerializable
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xefc057b3fefd88b4UL)]
+    public class SimpleModel : ICapnpSerializable
     {
-        public const UInt64 typeId = 0x867e63b587fcc2d1UL;
+        public const UInt64 typeId = 0xefc057b3fefd88b4UL;
+        void ICapnpSerializable.Deserialize(DeserializerState arg_)
+        {
+            var reader = READER.create(arg_);
+            Mesh = CapnpSerializable.Create<CapnpGen.Mesh>(reader.Mesh);
+            Material = CapnpSerializable.Create<CapnpGen.PBRMetallicRoughness>(reader.Material);
+            applyDefaults();
+        }
+
+        public void serialize(WRITER writer)
+        {
+            Mesh?.serialize(writer.Mesh);
+            Material?.serialize(writer.Material);
+        }
+
+        void ICapnpSerializable.Serialize(SerializerState arg_)
+        {
+            serialize(arg_.Rewrap<WRITER>());
+        }
+
+        public void applyDefaults()
+        {
+        }
+
+        public CapnpGen.Mesh Mesh
+        {
+            get;
+            set;
+        }
+
+        public CapnpGen.PBRMetallicRoughness Material
+        {
+            get;
+            set;
+        }
+
+        public struct READER
+        {
+            readonly DeserializerState ctx;
+            public READER(DeserializerState ctx)
+            {
+                this.ctx = ctx;
+            }
+
+            public static READER create(DeserializerState ctx) => new READER(ctx);
+            public static implicit operator DeserializerState(READER reader) => reader.ctx;
+            public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
+            public CapnpGen.Mesh.READER Mesh => ctx.ReadStruct(0, CapnpGen.Mesh.READER.create);
+            public CapnpGen.PBRMetallicRoughness.READER Material => ctx.ReadStruct(1, CapnpGen.PBRMetallicRoughness.READER.create);
+        }
+
+        public class WRITER : SerializerState
+        {
+            public WRITER()
+            {
+                this.SetStruct(0, 2);
+            }
+
+            public CapnpGen.Mesh.WRITER Mesh
+            {
+                get => BuildPointer<CapnpGen.Mesh.WRITER>(0);
+                set => Link(0, value);
+            }
+
+            public CapnpGen.PBRMetallicRoughness.WRITER Material
+            {
+                get => BuildPointer<CapnpGen.PBRMetallicRoughness.WRITER>(1);
+                set => Link(1, value);
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xff304f417794565fUL)]
+    public class SimpleModelStamped : ICapnpSerializable
+    {
+        public const UInt64 typeId = 0xff304f417794565fUL;
         void ICapnpSerializable.Deserialize(DeserializerState arg_)
         {
             var reader = READER.create(arg_);
             Stamp = CapnpSerializable.Create<CapnpGen.Time>(reader.Stamp);
             Pose = CapnpSerializable.Create<CapnpGen.Pose>(reader.Pose);
-            Mesh = CapnpSerializable.Create<CapnpGen.Mesh>(reader.Mesh);
+            Mesh = CapnpSerializable.Create<CapnpGen.SimpleModel>(reader.Mesh);
             applyDefaults();
         }
 
@@ -529,7 +784,7 @@ namespace CapnpGen
             set;
         }
 
-        public CapnpGen.Mesh Mesh
+        public CapnpGen.SimpleModel Mesh
         {
             get;
             set;
@@ -548,7 +803,7 @@ namespace CapnpGen
             public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
             public CapnpGen.Time.READER Stamp => ctx.ReadStruct(0, CapnpGen.Time.READER.create);
             public CapnpGen.Pose.READER Pose => ctx.ReadStruct(1, CapnpGen.Pose.READER.create);
-            public CapnpGen.Mesh.READER Mesh => ctx.ReadStruct(2, CapnpGen.Mesh.READER.create);
+            public CapnpGen.SimpleModel.READER Mesh => ctx.ReadStruct(2, CapnpGen.SimpleModel.READER.create);
         }
 
         public class WRITER : SerializerState
@@ -570,9 +825,9 @@ namespace CapnpGen
                 set => Link(1, value);
             }
 
-            public CapnpGen.Mesh.WRITER Mesh
+            public CapnpGen.SimpleModel.WRITER Mesh
             {
-                get => BuildPointer<CapnpGen.Mesh.WRITER>(2);
+                get => BuildPointer<CapnpGen.SimpleModel.WRITER>(2);
                 set => Link(2, value);
             }
         }
@@ -585,16 +840,12 @@ namespace CapnpGen
         void ICapnpSerializable.Deserialize(DeserializerState arg_)
         {
             var reader = READER.create(arg_);
-            Width = reader.Width;
-            Height = reader.Height;
             Data = reader.Data;
             applyDefaults();
         }
 
         public void serialize(WRITER writer)
         {
-            writer.Width = Width;
-            writer.Height = Height;
             writer.Data.Init(Data);
         }
 
@@ -605,18 +856,6 @@ namespace CapnpGen
 
         public void applyDefaults()
         {
-        }
-
-        public int Width
-        {
-            get;
-            set;
-        }
-
-        public int Height
-        {
-            get;
-            set;
         }
 
         public IReadOnlyList<byte> Data
@@ -636,8 +875,6 @@ namespace CapnpGen
             public static READER create(DeserializerState ctx) => new READER(ctx);
             public static implicit operator DeserializerState(READER reader) => reader.ctx;
             public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
-            public int Width => ctx.ReadDataInt(0UL, 0);
-            public int Height => ctx.ReadDataInt(32UL, 0);
             public IReadOnlyList<byte> Data => ctx.ReadList(0).CastByte();
         }
 
@@ -645,19 +882,7 @@ namespace CapnpGen
         {
             public WRITER()
             {
-                this.SetStruct(1, 1);
-            }
-
-            public int Width
-            {
-                get => this.ReadDataInt(0UL, 0);
-                set => this.WriteData(0UL, value, 0);
-            }
-
-            public int Height
-            {
-                get => this.ReadDataInt(32UL, 0);
-                set => this.WriteData(32UL, value, 0);
+                this.SetStruct(0, 1);
             }
 
             public ListOfPrimitivesSerializer<byte> Data
@@ -754,6 +979,141 @@ namespace CapnpGen
             {
                 get => BuildPointer<CapnpGen.Image.WRITER>(2);
                 set => Link(2, value);
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xfe5ca357f9e345ffUL)]
+    public class FiducialDef : ICapnpSerializable
+    {
+        public const UInt64 typeId = 0xfe5ca357f9e345ffUL;
+        void ICapnpSerializable.Deserialize(DeserializerState arg_)
+        {
+            var reader = READER.create(arg_);
+            Id = reader.Id;
+            Pose = CapnpSerializable.Create<CapnpGen.Pose>(reader.Pose);
+            applyDefaults();
+        }
+
+        public void serialize(WRITER writer)
+        {
+            writer.Id = Id;
+            Pose?.serialize(writer.Pose);
+        }
+
+        void ICapnpSerializable.Serialize(SerializerState arg_)
+        {
+            serialize(arg_.Rewrap<WRITER>());
+        }
+
+        public void applyDefaults()
+        {
+        }
+
+        public string Id
+        {
+            get;
+            set;
+        }
+
+        public CapnpGen.Pose Pose
+        {
+            get;
+            set;
+        }
+
+        public struct READER
+        {
+            readonly DeserializerState ctx;
+            public READER(DeserializerState ctx)
+            {
+                this.ctx = ctx;
+            }
+
+            public static READER create(DeserializerState ctx) => new READER(ctx);
+            public static implicit operator DeserializerState(READER reader) => reader.ctx;
+            public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
+            public string Id => ctx.ReadText(0, null);
+            public CapnpGen.Pose.READER Pose => ctx.ReadStruct(1, CapnpGen.Pose.READER.create);
+        }
+
+        public class WRITER : SerializerState
+        {
+            public WRITER()
+            {
+                this.SetStruct(0, 2);
+            }
+
+            public string Id
+            {
+                get => this.ReadText(0, null);
+                set => this.WriteText(0, value, null);
+            }
+
+            public CapnpGen.Pose.WRITER Pose
+            {
+                get => BuildPointer<CapnpGen.Pose.WRITER>(1);
+                set => Link(1, value);
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("capnpc-csharp", "1.3.0.0"), TypeId(0xa8a45c0f2e4838d3UL)]
+    public class FiducialTrackedObject : ICapnpSerializable
+    {
+        public const UInt64 typeId = 0xa8a45c0f2e4838d3UL;
+        void ICapnpSerializable.Deserialize(DeserializerState arg_)
+        {
+            var reader = READER.create(arg_);
+            Markers = reader.Markers?.ToReadOnlyList(_ => CapnpSerializable.Create<CapnpGen.FiducialDef>(_));
+            applyDefaults();
+        }
+
+        public void serialize(WRITER writer)
+        {
+            writer.Markers.Init(Markers, (_s1, _v1) => _v1?.serialize(_s1));
+        }
+
+        void ICapnpSerializable.Serialize(SerializerState arg_)
+        {
+            serialize(arg_.Rewrap<WRITER>());
+        }
+
+        public void applyDefaults()
+        {
+        }
+
+        public IReadOnlyList<CapnpGen.FiducialDef> Markers
+        {
+            get;
+            set;
+        }
+
+        public struct READER
+        {
+            readonly DeserializerState ctx;
+            public READER(DeserializerState ctx)
+            {
+                this.ctx = ctx;
+            }
+
+            public static READER create(DeserializerState ctx) => new READER(ctx);
+            public static implicit operator DeserializerState(READER reader) => reader.ctx;
+            public static implicit operator READER(DeserializerState ctx) => new READER(ctx);
+            public IReadOnlyList<CapnpGen.FiducialDef.READER> Markers => ctx.ReadList(0).Cast(CapnpGen.FiducialDef.READER.create);
+        }
+
+        public class WRITER : SerializerState
+        {
+            public WRITER()
+            {
+                this.SetStruct(0, 1);
+            }
+
+            public ListOfStructsSerializer<CapnpGen.FiducialDef.WRITER> Markers
+            {
+                get => BuildPointer<ListOfStructsSerializer<CapnpGen.FiducialDef.WRITER>>(0);
+                set => Link(0, value);
             }
         }
     }

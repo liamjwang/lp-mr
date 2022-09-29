@@ -23,35 +23,44 @@ public class SmoothFollowOther : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!smoothingEnabled)
+        try
         {
-            transform.position = other.position;
-            transform.rotation = other.rotation;
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, other.position) < maxDistance)
-            {
-
-                Transform myTransform = transform;
-                myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
-                Quaternion transformRotation = myTransform.rotation;
-                float delta = Quaternion.Angle(transformRotation, other.rotation);
-                if (delta > 0f)
-                {
-                    float t = Mathf.SmoothDampAngle(delta, 0.0f, ref currVel, rotateSmoothTime);
-                    t = 1.0f - (t / delta);
-                    myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
-                }
-
-                if (followScale)
-                    myTransform.localScale = other.localScale;
-            }
-            else
+            if (!smoothingEnabled)
             {
                 transform.position = other.position;
                 transform.rotation = other.rotation;
             }
+            else
+            {
+                if (Vector3.Distance(transform.position, other.position) < maxDistance)
+                {
+
+                    Transform myTransform = transform;
+                    myTransform.position = Vector3.SmoothDamp(myTransform.position, other.position, ref velocity, translateSmoothTime);
+                    Quaternion transformRotation = myTransform.rotation;
+                    float delta = Quaternion.Angle(transformRotation, other.rotation);
+                    if (delta > 0f)
+                    {
+                        float t = Mathf.SmoothDampAngle(delta, 0.0f, ref currVel, rotateSmoothTime);
+                        t = 1.0f - (t / delta);
+                        myTransform.rotation = Quaternion.Slerp(transformRotation, other.rotation, t);
+                    }
+
+                    if (followScale)
+                        myTransform.localScale = other.localScale;
+                }
+                else
+                {
+                    transform.position = other.position;
+                    transform.rotation = other.rotation;
+                }
+            }
+        }
+        catch
+        {
+            transform.position = other.position;
+            transform.rotation = other.rotation;
+            transform.localScale = other.localScale;
         }
     }
 }

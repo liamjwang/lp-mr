@@ -76,12 +76,12 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _CloseColor: {r: 1, g: 0, b: 0, a: 1}
+    - _CloseColor: {r: 0.6177184, g: 0.16457021, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FarColor: {r: 0, g: 0, b: 1, a: 0.46666667}
+    - _FarColor: {r: 1, g: 1, b: 1, a: 0.46666667}
     - _LineNormal: {r: 0, g: 1.7, b: 0, a: 0}
     - _LinePoint: {r: -0.06, g: 4.52, b: 0.22, a: 1}
-    - _NeedleTipDirection: {r: -0, g: -1, b: 0, a: 0}
-    - _NeedleTipPosition: {r: -0.099, g: 0, b: 0.285, a: 0}
+    - _NeedleTipDirection: {r: -0, g: -1, b: -0, a: 0}
+    - _NeedleTipPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -27,24 +27,35 @@ public class ZMQConnection : MonoBehaviour
     
     public string IPAddress = "localhost";
     public int Port = 9090;
+    public int PubPort = 40001;
     public bool HasConnectionError;
     public bool HasConnectionThread;
     
     private SubscriberSocket subscriber;
+    private PublisherSocket publisher;
     private readonly Dictionary<string, List<Action<ICapnpSerializable>>> callbacks = new();
     private readonly Dictionary<string, Type> types = new();
     private readonly HashSet<string> subscribedTopics = new();
 
-    public void Connect(string ip, int port)
+    public void Connect(string ip, int port, int pubport)
     {
         Disconnect();
         subscriber = new SubscriberSocket($"tcp://{ip}:{port}");
+        publisher = new PublisherSocket($"tcp://{ip}:{pubport}");
         foreach (var topic in subscribedTopics)
         {
             subscriber.Subscribe(topic);
             Debug.Log($"Subscribed to {topic}");
         }
         Debug.Log($"Connecting to {ip}:{port}");
+    }
+
+    public void Publish(string topic, byte[] data)
+    {
+        byte[][] frames = new byte[2][];
+        frames[0] = System.Text.Encoding.UTF8.GetBytes(topic);
+        frames[1] = data;
+        publisher.SendMultipartBytes(frames);
     }
 
     public void Disconnect()

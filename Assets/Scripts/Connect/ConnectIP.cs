@@ -36,7 +36,7 @@ public class ConnectIP : MonoBehaviour
 #endif
         if (connectOnStart)
         {
-            connection.Connect(ip, connection.Port);
+            connection.Connect(ip, connection.Port, connection.PubPort);
         }
     }
 
@@ -44,12 +44,12 @@ public class ConnectIP : MonoBehaviour
     {
         ip = inputIP; 
         connection.Disconnect();
-        connection.Connect(ip, connection.Port);
+        connection.Connect(ip, connection.Port, connection.PubPort);
 
 #if WINDOWS_UWP
         // Save IP address to localSettings
         var localSettings = ApplicationData.Current.LocalSettings;
-        localSettings.Values["IP"] = ip;   
+        localSettings.Values["IP"] = ip;
 #endif
     }
 }

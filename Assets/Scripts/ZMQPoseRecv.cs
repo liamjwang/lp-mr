@@ -10,12 +10,13 @@ public class ZMQPoseRecv : MonoBehaviour
 {
 
     private Proto.Messages.MeshStamped meshStamped;
-    
+    public string topic = "needle/pose/";
+
 
     private void Start()
     {
         ZMQConnection connect = ZMQConnection.GetOrCreateInstance();
-        connect.Subscribe<CapnpGen.Pose>("needle/pose/", OnMeshRecv);
+        connect.Subscribe<CapnpGen.Pose>(topic, OnMeshRecv);
         
     }
 

@@ -81,8 +81,8 @@ public class MultiQRTrack : MonoBehaviour
             SetAverage();
         }
 
-        // float frameInitialLoss = Loss();
-        // Matrix4x4 ogPose = transform.GetMatrix();
+        float frameInitialLoss = Loss();
+        Matrix4x4 ogPose = transform.GetMatrix();
         if (enableOptimization)
         {
             for (int i = 0; i < 100; i++)
@@ -92,10 +92,10 @@ public class MultiQRTrack : MonoBehaviour
         }
         float afterFrameLoss = Loss();
         errorDisplay = afterFrameLoss;
-        // if (afterFrameLoss + minImprovement >= frameInitialLoss)
-        // {
-        //     transform.SetMatrix(ogPose);
-        // }
+        if (afterFrameLoss + minImprovement >= frameInitialLoss)
+        {
+            transform.SetMatrix(ogPose);
+        }
     }
 
     private static Matrix4x4 CalculateDesiredPose(QRCorrespondence qrCorrespondence)
@@ -186,6 +186,11 @@ public class MultiQRTrack : MonoBehaviour
             Matrix4x4 targetMatrix = targetQrTransform.GetMatrix(Space.World);
             Matrix4x4 desiredPose = targetMatrix * sourceMatrix.inverse;
             desiredPoses.Add(desiredPose);
+        }
+        
+        if (desiredPoses.Count == 0)
+        {
+            Debug.LogError("No valid correspondences!!");
         }
 
 

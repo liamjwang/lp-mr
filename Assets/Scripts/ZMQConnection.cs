@@ -41,7 +41,8 @@ public class ZMQConnection : MonoBehaviour
     {
         Disconnect();
         subscriber = new SubscriberSocket($"tcp://{ip}:{port}");
-        publisher = new PublisherSocket($"tcp://{ip}:{pubport}");
+        publisher = new PublisherSocket();
+        publisher.Connect($"tcp://{ip}:{pubport}");
         foreach (var topic in subscribedTopics)
         {
             subscriber.Subscribe(topic);
@@ -52,6 +53,11 @@ public class ZMQConnection : MonoBehaviour
 
     public void Publish(string topic, byte[] data)
     {
+        if (publisher == null)
+        {
+            Debug.Log("Publisher is null");
+            return;
+        }
         byte[][] frames = new byte[2][];
         frames[0] = System.Text.Encoding.UTF8.GetBytes(topic);
         frames[1] = data;
@@ -61,6 +67,7 @@ public class ZMQConnection : MonoBehaviour
     public void Disconnect()
     {
         subscriber?.Dispose();
+        publisher?.Dispose();
     }
     
 

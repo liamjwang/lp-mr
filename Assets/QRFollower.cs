@@ -12,7 +12,9 @@ public class QRFollower : MonoBehaviour
     public long lastUpdated;
 
     private Matrix4x4 lastPose;
-    
+    public float UpdateDistThresh = 0.001f;
+    public float UpdateAngleThresh = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,7 @@ public class QRFollower : MonoBehaviour
     void Update()
     {
         Matrix4x4 pose = transform.GetMatrix();
-        if (lastPose != pose) // exact
+        if (Vector3.Magnitude(pose.GetPosition() - lastPose.GetPosition()) > UpdateDistThresh || Quaternion.Angle(pose.GetRotation(), lastPose.GetRotation()) > UpdateAngleThresh)
         {
             lastPose = pose;
             lastUpdated = Time.frameCount;

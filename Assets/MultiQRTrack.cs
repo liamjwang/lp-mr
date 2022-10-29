@@ -14,7 +14,7 @@ public class MultiQRTrack : MonoBehaviour
         public GameObject sourceQR;
         
         [HideInInspector]
-        public bool excluded;
+        public bool excluded = true;
     }
     
     public List<QRCorrespondence> qrCorrespondences;
@@ -62,8 +62,6 @@ public class MultiQRTrack : MonoBehaviour
             Matrix4x4 desiredPose = CalculateDesiredPose(recentCorrespondence);
             transform.SetMatrix(desiredPose);
             
-            recentCorrespondence.excluded = false;
-            
             for (int i = 0; i < qrCorrespondences.Count; i++)
             {
                 QRCorrespondence qrCorrespondence = qrCorrespondences[i];
@@ -77,21 +75,25 @@ public class MultiQRTrack : MonoBehaviour
                 qrCorrespondence.excluded = posMagnitude > excludePosThreshold || rotationMagnitude > excludeRotThreshold;
                 Debug.Log($"Excluded {i}? {posMagnitude > excludePosThreshold} {rotationMagnitude > excludeRotThreshold} {qrCorrespondence.excluded}");
             }
+            
+            recentCorrespondence.excluded = false;
+            
+            Debug.Log($"Desired pose: {desiredPose}");
 
             SetAverage();
         }
 
         // float frameInitialLoss = Loss();
         // Matrix4x4 ogPose = transform.GetMatrix();
-        if (enableOptimization)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                StepOptimizer();
-            }
-        }
-        float afterFrameLoss = Loss();
-        errorDisplay = afterFrameLoss;
+        // if (enableOptimization)
+        // {
+        //     for (int i = 0; i < 100; i++)
+        //     {
+        //         StepOptimizer();
+        //     }
+        // }
+        // float afterFrameLoss = Loss();
+        // errorDisplay = afterFrameLoss;
         // if (afterFrameLoss + minImprovement >= frameInitialLoss)
         // {
         //     transform.SetMatrix(ogPose);
@@ -183,9 +185,21 @@ public class MultiQRTrack : MonoBehaviour
             Transform sourceQrTransform = qrCorrespondence.sourceQR.transform;
             Transform targetQrTransform = qrCorrespondence.targetQR.transform;
             Matrix4x4 sourceMatrix = sourceQrTransform.GetMatrix(Space.Self);
+            Debug.Log($"Source matrix: {sourceMatrix}");
             Matrix4x4 targetMatrix = targetQrTransform.GetMatrix(Space.World);
+            Debug.Log($"Target matrix: {targetMatrix}");
             Matrix4x4 desiredPose = targetMatrix * sourceMatrix.inverse;
+            Debug.Log($"desiredPose: {targetMatrix}");
             desiredPoses.Add(desiredPose);
+        }
+        
+        if (desiredPoses.Count == 0)
+        {
+            Debug.LogError("No valid correspondences!!");
+        }
+        else
+        {
+            Debug.Log($"Average of {desiredPoses.Count} poses");
         }
 
 
@@ -218,8 +232,10 @@ public class MultiQRTrack : MonoBehaviour
         }
         averagePos /= vList.Count;
         
-        
-        transform.SetMatrix(Matrix4x4.TRS(averagePos, averageQuat, Vector3.one), Space.World);
+
+        Matrix4x4 avgMatrix = Matrix4x4.TRS(averagePos, averageQuat, Vector3.one);
+        Debug.Log($"Average Matrix: {avgMatrix}");
+        transform.SetMatrix(avgMatrix, Space.World);
     }
 }
 

@@ -53,12 +53,7 @@ public class ZMQMeshRecv : MonoBehaviour
         {
             vertices[i / 3] = new Vector3(mesh.Vertices[i], mesh.Vertices[i + 1], mesh.Vertices[i + 2]);
         }
-        if (lastVertices != null && lastVertices.SequenceEqual(vertices))
-        {
-            Debug.Log("Same mesh");
-            return;
-        }
-        
+
         Debug.Log("New mesh");
 
         lastVertices = vertices;

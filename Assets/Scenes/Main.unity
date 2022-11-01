@@ -1150,10 +1150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   other: {fileID: 107864376}
-  translateSmoothTime: 0.1
-  rotateSmoothTime: 0.1
+  translateSmoothTime: 0.03
+  rotateSmoothTime: 0.03
   followScale: 1
-  smoothingEnabled: 0
+  smoothingEnabled: 1
   maxDistance: 0.52
   local: 0
 --- !u!1 &142158075

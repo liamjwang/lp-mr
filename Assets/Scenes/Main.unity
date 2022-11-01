@@ -3307,7 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd4fb150d6d424d8105244f82aa8cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IPAddress: 127.0.0.1
+  IPAddress: 192.168.137.1
   Port: 40000
   PubPort: 40001
   HasConnectionError: 0
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70e5482b8a24957bf158055c04bfffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 192.168.137.63
+  ip: 192.168.137.1
   connectOnStart: 1
 --- !u!4 &336777138
 Transform:
@@ -4675,7 +4675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &446035473
 Transform:
   m_ObjectHideFlags: 0
@@ -4884,7 +4884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &480034533
 Transform:
   m_ObjectHideFlags: 0
@@ -6073,7 +6073,7 @@ Transform:
   m_Children:
   - {fileID: 973602365}
   m_Father: {fileID: 1738804778}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!1 &620837884
 GameObject:
@@ -6844,7 +6844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &726810560
 MonoBehaviour:
@@ -7707,6 +7707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 3
   lastUpdated: 0
+  UpdateDistThresh: 0.001
+  UpdateAngleThresh: 0.1
 --- !u!1 &808871985
 GameObject:
   m_ObjectHideFlags: 0
@@ -7804,6 +7806,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 2
   lastUpdated: 0
+  UpdateDistThresh: 0.001
+  UpdateAngleThresh: 0.1
 --- !u!1 &855897787
 GameObject:
   m_ObjectHideFlags: 0
@@ -9526,7 +9530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &973602365
 Transform:
   m_ObjectHideFlags: 0
@@ -11579,7 +11583,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139015363}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e689cdca1f0ac354cbe102efa3e13e31, type: 3}
   m_Name: 
@@ -11588,7 +11592,7 @@ MonoBehaviour:
   translateSmoothTime: 0.3
   rotateSmoothTime: 0.3
   followScale: 0
-  smoothingEnabled: 0
+  smoothingEnabled: 1
   maxDistance: 0.04
   local: 0
 --- !u!4 &1139015365
@@ -11598,7 +11602,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139015363}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11611,8 +11615,8 @@ Transform:
   - {fileID: 788754163}
   - {fileID: 1824836034}
   - {fileID: 993739152}
-  m_Father: {fileID: 1738804778}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1139015366
 MonoBehaviour:
@@ -15318,6 +15322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: 0
   lastUpdated: 0
+  UpdateDistThresh: 0.001
+  UpdateAngleThresh: 0.1
 --- !u!1 &1427443523
 GameObject:
   m_ObjectHideFlags: 0
@@ -15860,7 +15866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1485744123
 Transform:
   m_ObjectHideFlags: 0
@@ -16292,7 +16298,7 @@ Transform:
   m_Children:
   - {fileID: 480034533}
   m_Father: {fileID: 1738804778}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!1 &1532777600
 GameObject:
@@ -18606,7 +18612,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 706861190}
-  - {fileID: 1139015365}
   - {fileID: 608621238}
   - {fileID: 1530348299}
   - {fileID: 1847332305}
@@ -20117,7 +20122,7 @@ Transform:
   m_Children:
   - {fileID: 1485744123}
   m_Father: {fileID: 1738804778}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -155, y: -90, z: 0}
 --- !u!1 &1871344517 stripped
 GameObject:
@@ -20372,7 +20377,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921806346
 GameObject:
@@ -20984,6 +20989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMesh: {fileID: 2079769478}
+  RequestMeshTopic: mesh/request/
 --- !u!1 &2085206391
 GameObject:
   m_ObjectHideFlags: 0

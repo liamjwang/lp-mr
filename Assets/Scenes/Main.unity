@@ -1153,7 +1153,7 @@ MonoBehaviour:
   translateSmoothTime: 0.03
   rotateSmoothTime: 0.03
   followScale: 1
-  smoothingEnabled: 1
+  smoothingEnabled: 0
   maxDistance: 0.52
   local: 0
 --- !u!1 &142158075
@@ -3307,7 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd4fb150d6d424d8105244f82aa8cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IPAddress: 192.168.137.1
+  IPAddress: localhost
   Port: 40000
   PubPort: 40001
   HasConnectionError: 0
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70e5482b8a24957bf158055c04bfffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 192.168.137.1
+  ip: localhost
   connectOnStart: 1
 --- !u!4 &336777138
 Transform:
@@ -6824,6 +6824,7 @@ GameObject:
   - component: {fileID: 726810559}
   - component: {fileID: 726810560}
   - component: {fileID: 726810561}
+  - component: {fileID: 726810562}
   m_Layer: 0
   m_Name: QRManager
   m_TagString: Untagged
@@ -6872,6 +6873,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qrPrefab: {fileID: 4891875069072622213, guid: 595f6533edc127b458d3794285919987, type: 3}
+--- !u!114 &726810562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726810557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee14dac632c4ca9b857632527282924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectIP: {fileID: 336777137}
 --- !u!1 &728105490
 GameObject:
   m_ObjectHideFlags: 0
@@ -23770,7 +23784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &624931603261099421
 MonoBehaviour:
   m_ObjectHideFlags: 0

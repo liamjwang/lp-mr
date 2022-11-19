@@ -79,9 +79,9 @@ Material:
     - _CloseColor: {r: 0.6177184, g: 0.16457021, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FarColor: {r: 1, g: 1, b: 1, a: 0.46666667}
+    - _FarColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.46666667}
     - _LineNormal: {r: 0, g: 1.7, b: 0, a: 0}
     - _LinePoint: {r: -0.06, g: 4.52, b: 0.22, a: 1}
-    - _NeedleTipDirection: {r: -0.000000029235546, g: -1, b: 0.000000078458214, a: 0}
-    - _NeedleTipPosition: {r: -0.09776667, g: -0.00006666707, b: 0.28406668, a: 0}
+    - _NeedleTipDirection: {r: -0.3440595, g: -0.9378341, b: 0.04571967, a: 0}
+    - _NeedleTipPosition: {r: -0.016666874, g: -0.0023666755, b: 0.20996702, a: 0}
   m_BuildTextureStacks: []

@@ -83,11 +83,11 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NeedleTipDirection: {r: -0.21930018, g: -0.9673901, b: 0.12674294, a: 0}
-    - _NeedleTipPosition: {r: -0.027965948, g: -0.028566772, b: -1.1373253, a: 0}
+    - _NeedleTipDirection: {r: -0, g: -1, b: -0, a: 0}
+    - _NeedleTipPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RingColor: {r: 0, g: 0.31799078, b: 1, a: 1}
     - _RingObstructedColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     - _TargetColor: {r: 1, g: 0, b: 0.009994984, a: 1}
     - _TargetObstructedColor: {r: 0, g: 0, b: 1, a: 1}
-    - _TargetPosition: {r: -0.045366626, g: -0.102166675, b: 0.2187667, a: 0}
+    - _TargetPosition: {r: 0.0653, g: -0.1021, b: 0.0524, a: 0}
   m_BuildTextureStacks: []

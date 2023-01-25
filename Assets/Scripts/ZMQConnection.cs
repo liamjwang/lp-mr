@@ -6,7 +6,6 @@ using Capnp;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ZMQConnection : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class ZMQConnection : MonoBehaviour
     }
     
     public string IPAddress = "localhost";
-    public int Port = 9090;
+    public int Port = 40000;
     public int PubPort = 40001;
     public bool HasConnectionError;
     public bool HasConnectionThread;

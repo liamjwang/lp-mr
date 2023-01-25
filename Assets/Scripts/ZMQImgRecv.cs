@@ -5,9 +5,6 @@ public class ZMQImgRecv : MonoBehaviour
 {
     public MeshFilter targetMesh;
 
-    private Proto.Messages.MeshStamped meshStamped;
-    
-
     private void Start()
     {
         ZMQConnection connect = ZMQConnection.GetOrCreateInstance();

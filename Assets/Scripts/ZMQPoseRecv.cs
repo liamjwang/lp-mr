@@ -1,15 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
-using Proto.Services;
+﻿using System.Linq;
 using UnityEngine;
 
 public class ZMQPoseRecv : MonoBehaviour
 {
 
-    private Proto.Messages.MeshStamped meshStamped;
     public string topic = "needle/pose/";
 
 

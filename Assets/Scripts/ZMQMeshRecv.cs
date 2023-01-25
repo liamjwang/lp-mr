@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
-using Proto.Services;
 using UnityEngine;
 
 public class ZMQMeshRecv : MonoBehaviour
@@ -13,7 +9,6 @@ public class ZMQMeshRecv : MonoBehaviour
     public string RequestMeshTopic = "mesh/request/";
 
     
-    private Proto.Messages.MeshStamped meshStamped;
     private Mesh myMesh = new Mesh();
     private Vector3[] lastVertices;
     private RateLimiter rateLimiter;
@@ -64,28 +59,5 @@ public class ZMQMeshRecv : MonoBehaviour
         myMesh.RecalculateNormals();
         hasMesh = true;
     }
-    //
-    // class USMeshServiceImpl : USMeshService.USMeshServiceBase
-    // {
-    //     private MeshServiceProvider _parent;
-    //     public USMeshServiceImpl(MeshServiceProvider parent)
-    //     {
-    //         _parent = parent;
-    //     }
-    //     public override Task<Empty> Update(Proto.Messages.MeshStamped request, ServerCallContext context)
-    //     {
-    //         try
-    //         {
-    //             _parent.meshStamped = request;
-    //     
-    //             Debug.Log("Mesh received");
-    //         }  catch (Exception e)
-    //         {
-    //             Debug.LogError(e);
-    //         }
-    //
-    //         return Task.FromResult(new Empty());
-    //     }
-    // }
 }
     

@@ -1,17 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Capnp;
-using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
-using Proto.Services;
 using UnityEngine;
 
 public class ZMQPoseSend : MonoBehaviour
 {
 
-    private Proto.Messages.MeshStamped meshStamped;
     private ZMQConnection connect1;
     public string topic = "plan/set/";
 

@@ -12,9 +12,7 @@ public class ConnectIP : MonoBehaviour
 { 
     ZMQConnection connection;
 
-    // ROS Connector
-    [FormerlySerializedAs("rosIP")] [SerializeField]
-    string ip;
+    public string ip;
     public string IP{ get => ip; set => ip = value; }
     public bool connectOnStart = true;
 

@@ -59,7 +59,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _CrosshairWidth: 0.0002
+    - _CrosshairWidth: 0.0005
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -71,20 +71,20 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RingWidth: 0.001
+    - _RingWidth: 0.0015
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TargetRadius: 0.001
+    - _TargetRadius: 0.002
     - _TargetRingRadius: 0.0062
-    - _TargetRingWidth: 0.0007
+    - _TargetRingWidth: 0.0015
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NeedleTipDirection: {r: -0, g: -1, b: -0, a: 0}
-    - _NeedleTipPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _NeedleTipDirection: {r: -0.126743, g: -0.9673902, b: -0.21930005, a: 0}
+    - _NeedleTipPosition: {r: 0.0784, g: -0.0285, b: 0.0698, a: 0}
     - _RingColor: {r: 0, g: 0.31799078, b: 1, a: 1}
     - _RingObstructedColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     - _TargetColor: {r: 1, g: 0, b: 0.009994984, a: 1}

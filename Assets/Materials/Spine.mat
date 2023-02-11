@@ -82,6 +82,6 @@ Material:
     - _FarColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.46666667}
     - _LineNormal: {r: 0, g: 1.7, b: 0, a: 0}
     - _LinePoint: {r: -0.06, g: 4.52, b: 0.22, a: 1}
-    - _NeedleTipDirection: {r: -0.126743, g: -0.9673902, b: -0.21930005, a: 0}
-    - _NeedleTipPosition: {r: 0.0784, g: -0.0285, b: 0.0698, a: 0}
+    - _NeedleTipDirection: {r: -0.1698703, g: -0.9786241, b: 0.11592665, a: 0}
+    - _NeedleTipPosition: {r: -0.049766622, g: -0.027266674, b: 0.2203667, a: 0}
   m_BuildTextureStacks: []
